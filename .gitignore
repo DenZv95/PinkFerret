@@ -13,8 +13,10 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-# Build results
-[Dd]ebug/
+# Build resultsd
+/PinkFerret/[Dd]ebug/
+!/[Dd]ebug/openal32.dll
+/[Dd]ebug/*.exe
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
