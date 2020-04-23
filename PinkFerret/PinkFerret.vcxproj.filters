@@ -16,6 +16,15 @@
     <Filter Include="Исходные файлы\States">
       <UniqueIdentifier>{b19b44f4-1dc6-46d4-bf47-11c9559b61fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\Media">
+      <UniqueIdentifier>{9a74157b-2598-4f8d-9b50-42516f276e4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Media\Textures">
+      <UniqueIdentifier>{77051b00-26d1-4e89-a468-4531a6113ff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы ресурсов\Media\Textures\survivor">
+      <UniqueIdentifier>{66c38daa-1d37-42f2-bd76-3d2bde039ae3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
