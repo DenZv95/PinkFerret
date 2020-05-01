@@ -1,7 +1,6 @@
 #include <iostream> 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
-#include "Zombie.h"
 #include "map.h"
 
 using namespace sf;
@@ -11,19 +10,14 @@ int main()
 	float dX = 0;
 	float dY = 0;
 
-	int tempX = 0;//временна€ коорд ’.—нимаем ее после нажати€ прав клав мыши
-	int tempY = 0;//коорд Y
-	float distance = 0;//это рассто€ние от объекта до тыка курсора
-
 	Clock clock;
 	bool stop = true;
 	Player player(300, 300);
+	Sprite sp;
 
-	Zombie zombie(600, 300);
-	Sprite sp, zm;
-	
-	Image map_image;
-	map_image.loadFromFile("Media/map.png");
+
+	Image map_image;//текстура карты
+	map_image.loadFromFile("Media/map.png");//текстура карты
 	Texture map;//текстура карты
 	map.loadFromImage(map_image);//зар€жаем текстуру картинкой
 	Sprite s_map;//создаЄм спрайт дл€ карты
@@ -36,60 +30,30 @@ int main()
 		clock.restart();
 		time = time / 800;
 
-		Vector2i pixelPos = Mouse::getPosition(window);//забираем коорд курсора
-		Vector2f pos = window.mapPixelToCoords(pixelPos);//переводим их в игровые (уходим от коорд окна)
 
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-
-			if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
-				if (event.key.code == Mouse::Left) {//а именно лева€
-					if (zombie.Move.getGlobalBounds().contains(pos.x, pos.y))//и при этом координата курсора попадает в спрайт
-					{
-						//p.sprite.setColor(Color::Green);//красим спрайт в зеленый,тем самым говор€ игроку,что он выбрал персонажа и может сделать ход
-						zombie.Move.isSelect = true;
-					}
-				}
-
-			if (zombie.Move.isSelect)//если выбрали объект
-				if (event.type == Event::MouseButtonPressed)//если нажата клавиша мыши
-					if (event.key.code == Mouse::Right) {//а именно права€
-						zombie.Move.isMove = true;//то начинаем движение
-						zombie.Move.isSelect = false;//объект уже не выбран
-						//zombie.Move.setColor(Color::White);//возвращаем обычный цвет спрайту
-						tempX = pos.x;//забираем координату нажати€ курсора ’
-						tempY = pos.y;//и Y
-					}
 		}
 
-		if (zombie.Move.isMove) {
-			distance = sqrt((tempX - zombie.Move.x) * (tempX - zombie.Move.x) + (tempY - zombie.Move.y) * (tempY - zombie.Move.y));//считаем дистанцию (рассто€ние от точки ј до точки Ѕ). использу€ формулу длины вектора
 
-			if (distance > 2) {//этим условием убираем дергание во врем€ конечной позиции спрайта
 
-				zombie.Move.x += 0.1 * time * (tempX - zombie.Move.x) / distance;//идем по иксу с помощью вектора нормали
-				zombie.Move.y += 0.1 * time * (tempY - zombie.Move.y) / distance;//идем по игреку так же
-			}
-			else { zombie.Move.isMove = false; std::cout << "priehali\n"; }//говорим что уже никуда не идем и выводим веселое сообщение в консоль
-		}
-
-		//player
-		if (Keyboard::isKeyPressed(Keyboard::A)) {
+		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
 			player.Move(-0.12f, 0.f, time);
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::D)) {
+
+		if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
 			player.Move(0.12, 0, time);
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::W)) {
+		if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
 			player.Move(0, -0.12, time);
 		}
 
-		if (Keyboard::isKeyPressed(Keyboard::S)) {
+		if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
 			player.Move(0, 0.12, time);
 		}
 
@@ -106,32 +70,16 @@ int main()
 			player.Reload();
 		}
 
-		//zombie
-		if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			zombie.Move(-0.12f, 0.f, time);
-		}
 
-		if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			zombie.Move(0.12, 0, time);
-		}
+		Vector2i pixelPos = Mouse::getPosition(window);//забираем коорд курсора
+		Vector2f pos = window.mapPixelToCoords(pixelPos);//переводим их в игровые (уходим от коорд окна)
 
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			zombie.Move(0, -0.12, time);
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			zombie.Move(0, 0.12, time);
-		}
-
-		if (Mouse::isButtonPressed(Mouse::Right)) {
-			zombie.Meleeattack();
-		}
 
 		player.update(time, pos);//оживл€ем объект p класса Player с помощью времени sfml, передава€ врем€ в качестве параметра функции update. благодар€ этому персонаж может двигатьс€
-		
-		zombie.update(time, pos);//оживл€ем объект p класса Player с помощью времени sfml, передава€ врем€ в качестве параметра функции update. благодар€ этому персонаж может двигатьс€
+
 
 		window.clear();
+
 
 		/////////////////////////////–исуем карту/////////////////////
 		for (int i = 0; i < HEIGHT_MAP; i++)
@@ -148,9 +96,7 @@ int main()
 			}
 		/////////////////////////////–исуем карту/////////////////////
 		sp = player.getSprite();
-		zm = zombie.getSprite();
 		window.draw(sp);//рисуем спрайт объекта p класса player
-		window.draw(zm);//рисуем спрайт объекта p класса player
 		window.setView(player.getViev());
 		window.display();
 
