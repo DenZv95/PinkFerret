@@ -16,8 +16,8 @@ int main()
 	Sprite sp;
 
 
-	Image map_image;
-	map_image.loadFromFile("Media/map.png");
+	Image map_image;//текстура карты
+	map_image.loadFromFile("Media/map.png");//текстура карты
 	Texture map;//текстура карты
 	map.loadFromImage(map_image);//заряжаем текстуру картинкой
 	Sprite s_map;//создаём спрайт для карты
