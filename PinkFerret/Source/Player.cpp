@@ -12,7 +12,7 @@ Player::Player(float X, float Y)
 	sprite.setTextureRect(IntRect(0, 0, 260, 230));
 
 	meleeattack_image.loadFromFile("Media/survivor/handgun/survivor-meleeattack_handgun.png");
-	meleeattack_image.createMaskFromColor(Color(255, 255, 255));
+	meleeattack_image.createMaskFromColor(Color(255, 0, 0));
 	meleeattack_texture.loadFromImage(meleeattack_image);
 
 
