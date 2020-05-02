@@ -1,7 +1,9 @@
 #include <iostream> 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
-#include "map.h"
+#include "level.h"
+#include "TinyXML/tinyxml.h"
+//$(SolutionDir)\External\TinyXML\TinyXML
 
 using namespace sf;
 int main()
@@ -12,16 +14,11 @@ int main()
 
 	Clock clock;
 	bool stop = true;
+	Level lvl;
+	lvl.LoadFromFile("Media/Map/level1.tmx");//загрузили в него карту, внутри класса с помощью методов он ее обработает.
 	Player player(300, 300);
 	Sprite sp;
 
-
-	Image map_image;//текстура карты
-	map_image.loadFromFile("Media/map.png");//текстура карты
-	Texture map;//текстура карты
-	map.loadFromImage(map_image);//заряжаем текстуру картинкой
-	Sprite s_map;//создаём спрайт для карты
-	s_map.setTexture(map);//заливаем текстуру спрайтом
 
 	while (window.isOpen())
 	{
@@ -46,15 +43,15 @@ int main()
 
 
 		if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
-			player.Move(0.12, 0, time);
+			player.Move(0.12f, 0.f, time);
 		}
 
 		if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
-			player.Move(0, -0.12, time);
+			player.Move(0.f, -0.12f, time);
 		}
 
 		if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
-			player.Move(0, 0.12, time);
+			player.Move(0.f, 0.12f, time);
 		}
 
 
@@ -82,18 +79,8 @@ int main()
 
 
 		/////////////////////////////Рисуем карту/////////////////////
-		for (int i = 0; i < HEIGHT_MAP; i++)
-			for (int j = 0; j < WIDTH_MAP; j++)
-			{
-				if (TileMap[i][j] == ' ')  s_map.setTextureRect(IntRect(0, 0, 32, 32)); //если встретили символ пробел, то рисуем 1й квадратик
-				if (TileMap[i][j] == 's')  s_map.setTextureRect(IntRect(32, 0, 32, 32));//если встретили символ s, то рисуем 2й квадратик
-				if ((TileMap[i][j] == '0')) s_map.setTextureRect(IntRect(64, 0, 32, 32));//если встретили символ 0, то рисуем 3й квадратик
-
-
-				s_map.setPosition(j * 32, i * 32);//по сути раскидывает квадратики, превращая в карту. то есть задает каждому из них позицию. если убрать, то вся карта нарисуется в одном квадрате 32*32 и мы увидим один квадрат
-
-				window.draw(s_map);//рисуем квадратики на экран
-			}
+		window.clear(Color(77, 83, 140));
+		lvl.Draw(window);//рисуем новую карту
 		/////////////////////////////Рисуем карту/////////////////////
 		sp = player.getSprite();
 		window.draw(sp);//рисуем спрайт объекта p класса player

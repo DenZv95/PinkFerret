@@ -25,6 +25,8 @@ Player::Player(float X, float Y)
 
 	sprite.setTexture(move_texture);
 	amimationFinish = true;
+
+	//obj = lev.GetAllObjects();
 }
 
 void Player::update(float time, Vector2f positionMouse)
@@ -138,3 +140,19 @@ View Player::getViev()
 	return view;
 }
 
+void Player::checkCollisionWithMap(float Dx, float Dy)
+{
+	/*
+	for (int i = 0; i < obj.size(); i++)//проходимся по объектам
+		if (getRect().intersects(obj[i].rect))//проверяем пересечение игрока с объектом
+		{
+			if (obj[i].name == "TheWall")//если встретили препятствие
+			{
+				if (Dy > 0) { y = obj[i].rect.top - 200;  y += 0;}
+				if (Dy < 0) { y = obj[i].rect.top + obj[i].rect.height;   y += 0;}
+				if (Dx > 0) { x = obj[i].rect.left - 200; }
+				if (Dx < 0) { x = obj[i].rect.left + obj[i].rect.width; }
+			}
+		}
+		*/
+}

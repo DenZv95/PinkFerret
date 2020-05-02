@@ -11,6 +11,7 @@ public:
 	void Move(float dX, float dY, float time);
 	void Reload();
 	void Shoot();
+	void checkCollisionWithMap(float Dx, float Dy);
 	Sprite getSprite();
 	View getViev();
 private:
