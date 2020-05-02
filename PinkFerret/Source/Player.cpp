@@ -15,7 +15,6 @@ Player::Player(float X, float Y)
 	meleeattack_image.createMaskFromColor(Color(255, 0, 0));
 	meleeattack_texture.loadFromImage(meleeattack_image);
 
-
 	reload_image.loadFromFile("Media/survivor/handgun/survivor-reload_handgun.png");
 	reload_image.createMaskFromColor(Color(255, 255, 255));
 	reload_texture.loadFromImage(reload_image);

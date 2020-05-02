@@ -1,6 +1,7 @@
 #include <iostream> 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
+#include "Zombie.h"
 #include "map.h"
 
 using namespace sf;
@@ -13,7 +14,9 @@ int main()
 	Clock clock;
 	bool stop = true;
 	Player player(300, 300);
-	Sprite sp;
+
+	Zombie zombie(600, 300);
+	Sprite sp, zm;
 
 
 	Image map_image;
@@ -39,21 +42,20 @@ int main()
 		}
 
 
-
-		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
+		//player
+		if (Keyboard::isKeyPressed(Keyboard::A)) {
 			player.Move(-0.12f, 0.f, time);
 		}
 
-
-		if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
+		if (Keyboard::isKeyPressed(Keyboard::D)) {
 			player.Move(0.12, 0, time);
 		}
 
-		if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
+		if (Keyboard::isKeyPressed(Keyboard::W)) {
 			player.Move(0, -0.12, time);
 		}
 
-		if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
+		if (Keyboard::isKeyPressed(Keyboard::S)) {
 			player.Move(0, 0.12, time);
 		}
 
@@ -70,12 +72,34 @@ int main()
 			player.Reload();
 		}
 
+		//zombie
+		if (Keyboard::isKeyPressed(Keyboard::Left)) {
+			zombie.Move(-0.12f, 0.f, time);
+		}
+
+		if (Keyboard::isKeyPressed(Keyboard::Right)) {
+			zombie.Move(0.12, 0, time);
+		}
+
+		if (Keyboard::isKeyPressed(Keyboard::Up)) {
+			zombie.Move(0, -0.12, time);
+		}
+
+		if (Keyboard::isKeyPressed(Keyboard::Down)) {
+			zombie.Move(0, 0.12, time);
+		}
+
+		if (Mouse::isButtonPressed(Mouse::Right)) {
+			zombie.Meleeattack();
+		}
 
 		Vector2i pixelPos = Mouse::getPosition(window);//забираем коорд курсора
 		Vector2f pos = window.mapPixelToCoords(pixelPos);//переводим их в игровые (уходим от коорд окна)
 
 
 		player.update(time, pos);//оживляем объект p класса Player с помощью времени sfml, передавая время в качестве параметра функции update. благодаря этому персонаж может двигаться
+		
+		zombie.update(time, pos);//оживляем объект p класса Player с помощью времени sfml, передавая время в качестве параметра функции update. благодаря этому персонаж может двигаться
 
 
 		window.clear();
@@ -96,7 +120,9 @@ int main()
 			}
 		/////////////////////////////Рисуем карту/////////////////////
 		sp = player.getSprite();
+		zm = zombie.getSprite();
 		window.draw(sp);//рисуем спрайт объекта p класса player
+		window.draw(zm);//рисуем спрайт объекта p класса player
 		window.setView(player.getViev());
 		window.display();
 
