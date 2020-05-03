@@ -1,7 +1,8 @@
 #include "Player.h"
 
-Player::Player(float X, float Y)
+Player::Player(float X, float Y, Level& level)
 {
+	obj = level.GetAllObjects();
 	x = X; y = Y;
 	view.reset(sf::FloatRect(x, y, 1280, 1024));
 	view.setCenter(x + 100, y);
@@ -24,9 +25,9 @@ Player::Player(float X, float Y)
 	shoot_texture.loadFromImage(shoot_image);
 
 	sprite.setTexture(move_texture);
+	sprite.setOrigin(260 / 2, 230 / 2);
 	amimationFinish = true;
 
-	//obj = lev.GetAllObjects();
 }
 
 void Player::update(float time, Vector2f positionMouse)
@@ -67,7 +68,7 @@ void Player::update(float time, Vector2f positionMouse)
 		break;
 	case meleeattack:
 		amimationFinish = false;
-		CurrentFrame += 0.012 * time;
+		CurrentFrame += 0.016f * time;
 		if (CurrentFrame > 15) {
 			CurrentFrame = 0;
 			amimationFinish = true;
@@ -82,11 +83,8 @@ void Player::update(float time, Vector2f positionMouse)
 	}
 
 	sprite.setPosition(x, y);
-	sprite.setOrigin(260 / 2, 230 / 2);
-	//float dX = positionMouse.x - x;
-	//float dY = positionMouse.y - y;
-	//float rotation = (atan2(dY, dX)) * 180 / 3.14159265;
-	//sprite.setRotation(rotation);
+	
+
 	sprite.setRotation((atan2(positionMouse.y - y, positionMouse.x - x)) * 180 / 3.14159265);
 	if (amimationFinish) {
 		state = idle;
@@ -103,12 +101,14 @@ void Player::Meleeattack()
 
 void Player::Move(float dX, float dY, float time)
 {
+
 	if (amimationFinish) {
 		state = move;
 	}
+	
 	x += dX * time;
 	y += dY * time;
-
+	checkCollisionWithMap(dX, dY);
 	dX = 0;
 	dY = 0;
 	view.setCenter(x + 100, y);
@@ -140,19 +140,35 @@ View Player::getViev()
 	return view;
 }
 
+FloatRect Player::getRect() {
+	return FloatRect(x-95, y-90, 190, 180); 
+}
 void Player::checkCollisionWithMap(float Dx, float Dy)
 {
-	/*
-	for (int i = 0; i < obj.size(); i++)//проходимся по объектам
-		if (getRect().intersects(obj[i].rect))//проверяем пересечение игрока с объектом
+
+	for (int i = 0; i < obj.size(); i++)
+		if (getRect().intersects(obj[i].rect))
 		{
-			if (obj[i].name == "TheWall")//если встретили препятствие
+			if (obj[i].name == "TheWall")
 			{
-				if (Dy > 0) { y = obj[i].rect.top - 200;  y += 0;}
-				if (Dy < 0) { y = obj[i].rect.top + obj[i].rect.height;   y += 0;}
-				if (Dx > 0) { x = obj[i].rect.left - 200; }
-				if (Dx < 0) { x = obj[i].rect.left + obj[i].rect.width; }
+				//std::cout << "Pla: " << getRect().left << ' ' << getRect().top << std::endl;
+				//std::cout << "TheWall: " << obj[i].rect.left << ' ' << obj[i].rect.top << std::endl;
+				/**/
+				if (Dy > 0) { 
+					y = obj[i].rect.top + obj[i].rect.height - 64 - 90;
+				}
+				if (Dy < 0) { 
+					y = obj[i].rect.top + obj[i].rect.height + 90;   
+				}
+				
+				if (Dx > 0) {
+					x = obj[i].rect.left + obj[i].rect.width - 64 - 95;
+				}
+				
+				if (Dx < 0) {
+					x = obj[i].rect.left + obj[i].rect.width + 95;
+				}
 			}
 		}
-		*/
+		
 }

@@ -16,7 +16,7 @@ int main()
 	Level lvl;
 	lvl.LoadFromFile("Media/Map/level1.tmx");
 
-	Player player(300, 300);
+	Player player(300, 300, lvl);
 	Sprite sp;
 
 

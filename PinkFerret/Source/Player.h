@@ -1,11 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+#include "level.h"
 using namespace sf;
 class Player
 {
 public:
-	Player(float X, float Y);
+	Player(float X, float Y, Level &level);
 	void update(float time, Vector2f positionMouse);
 	void Meleeattack();
 	void Move(float dX, float dY, float time);
@@ -13,8 +13,10 @@ public:
 	void Shoot();
 	void checkCollisionWithMap(float Dx, float Dy);
 	Sprite getSprite();
+	FloatRect getRect();
 	View getViev();
 private:
+	std::vector<Object> obj;
 	View view;
 	float x, y = 0;
 	int state = 0;
