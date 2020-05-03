@@ -16,6 +16,9 @@
     <Filter Include="Файлы ресурсов\TinyXML">
       <UniqueIdentifier>{5a635cb9-04e9-4a7c-92a2-6ad4764f7348}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы ресурсов\TiledMapLoader">
+      <UniqueIdentifier>{63faba83-09b2-441b-8729-d3fb771c6072}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -36,6 +39,15 @@
     <ClCompile Include="Source\TinyXML\tinyxmlparser.cpp">
       <Filter>Файлы ресурсов\TinyXML</Filter>
     </ClCompile>
+    <ClCompile Include="Objects.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TiledMapLoader\level.cpp">
+      <Filter>Файлы ресурсов\TiledMapLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TiledMapLoader\Objects.cpp">
+      <Filter>Файлы ресурсов\TiledMapLoader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\map.h">
@@ -44,14 +56,20 @@
     <ClInclude Include="Source\Player.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Source\level.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Source\TinyXML\tinystr.h">
       <Filter>Файлы ресурсов\TinyXML</Filter>
     </ClInclude>
     <ClInclude Include="Source\TinyXML\tinyxml.h">
       <Filter>Файлы ресурсов\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="Objects.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TiledMapLoader\level.h">
+      <Filter>Файлы ресурсов\TiledMapLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TiledMapLoader\Objects.h">
+      <Filter>Файлы ресурсов\TiledMapLoader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

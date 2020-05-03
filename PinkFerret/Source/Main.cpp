@@ -3,7 +3,6 @@
 #include "Player.h"
 #include "level.h"
 #include "TinyXML/tinyxml.h"
-//$(SolutionDir)\External\TinyXML\TinyXML
 
 using namespace sf;
 int main()
@@ -15,7 +14,8 @@ int main()
 	Clock clock;
 	bool stop = true;
 	Level lvl;
-	lvl.LoadFromFile("Media/Map/level1.tmx");//загрузили в него карту, внутри класса с помощью методов он ее обработает.
+	lvl.LoadFromFile("Media/Map/level1.tmx");
+
 	Player player(300, 300);
 	Sprite sp;
 
@@ -68,22 +68,20 @@ int main()
 		}
 
 
-		Vector2i pixelPos = Mouse::getPosition(window);//забираем коорд курсора
-		Vector2f pos = window.mapPixelToCoords(pixelPos);//переводим их в игровые (уходим от коорд окна)
+		Vector2i pixelPos = Mouse::getPosition(window);
+		Vector2f pos = window.mapPixelToCoords(pixelPos);
 
 
-		player.update(time, pos);//оживляем объект p класса Player с помощью времени sfml, передавая время в качестве параметра функции update. благодаря этому персонаж может двигаться
+		player.update(time, pos);
 
 
 		window.clear();
-
-
+		
 		/////////////////////////////Рисуем карту/////////////////////
 		window.clear(Color(77, 83, 140));
-		lvl.Draw(window);//рисуем новую карту
-		/////////////////////////////Рисуем карту/////////////////////
+		lvl.Draw(window);
 		sp = player.getSprite();
-		window.draw(sp);//рисуем спрайт объекта p класса player
+		window.draw(sp);
 		window.setView(player.getViev());
 		window.display();
 

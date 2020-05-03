@@ -2511,12 +2511,12 @@
   </data>
  </layer>
  <objectgroup id="2" name="collision">
-  <object id="1" name="TheWall" x="0" y="0" width="3200" height="64"/>
-  <object id="2" name="TheWall" x="0" y="64" width="64" height="3136"/>
-  <object id="3" name="TheWall" x="3136" y="64" width="64" height="3071.83"/>
-  <object id="4" name="TheWall" x="64" y="3136" width="3136" height="64"/>
-  <object id="5" name="Exit" x="128" y="3008" width="320" height="128"/>
-  <object id="6" name="TheWall" x="256" y="2452" width="300" height="25"/>
-  <object id="7" name="TheWall" x="532" y="2477" width="25" height="659"/>
+  <object id="1" name="TheWall" type="Solid" x="0" y="0" width="3200" height="64"/>
+  <object id="2" name="TheWall" type="Solid" x="0" y="64" width="64" height="3136"/>
+  <object id="3" name="TheWall" type="Solid" x="3136" y="64" width="64" height="3071.83"/>
+  <object id="4" name="TheWall" type="Solid" x="64" y="3136" width="3136" height="64"/>
+  <object id="5" name="Exit" type="Ex" x="128" y="3008" width="320" height="128"/>
+  <object id="6" name="TheWall" type="Solid" x="256" y="2452" width="300" height="25"/>
+  <object id="7" name="TheWall" type="Solid" x="532" y="2477" width="25" height="659"/>
  </objectgroup>
 </map>
