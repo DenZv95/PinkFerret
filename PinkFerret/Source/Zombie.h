@@ -23,7 +23,7 @@ private:
 		move,
 		meleeattack
 	};
-	bool amimationFinish;
+	bool amimationFinish, isMove, isSelect;
 	
 	Image move_image;
 	Texture move_texture;

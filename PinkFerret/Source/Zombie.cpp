@@ -21,8 +21,6 @@ Zombie::Zombie(float X, float Y)
 
 void Zombie::update(float time, Vector2f positionMouse)
 {
-
-
 	switch (state)
 	{
 	case move:
@@ -80,6 +78,9 @@ void Zombie::Move(float dX, float dY, float time)
 	dX = 0;
 	dY = 0;
 	view.setCenter(x + 100, y);
+	
+	isMove = false; 
+	isSelect = false;
 }
 
 
