@@ -5,7 +5,8 @@ using namespace sf;
 class Player
 {
 public:
-	Player(float X, float Y, Level &level);
+	float x, y, angle = 0;
+	Player(float X, float Y, Level& level);
 	void update(float time, Vector2f positionMouse);
 	void Meleeattack();
 	void Move(float dX, float dY, float time);
@@ -18,7 +19,7 @@ public:
 private:
 	std::vector<Object> obj;
 	View view;
-	float x, y = 0;
+
 	int state = 0;
 	float CurrentFrameMove = 0;
 	float CurrentFrame = 0;

@@ -3,6 +3,10 @@
 #include "Player.h"
 #include "level.h"
 #include "TinyXML/tinyxml.h"
+#include "Animation.h"
+#include "Entity.h"
+#include <list>
+#include "Bullet.h"
 
 using namespace sf;
 int main()
@@ -16,9 +20,17 @@ int main()
 	Level lvl;
 	lvl.LoadFromFile("Media/Map/level1.tmx");
 
+
+	Texture sBullet_texture;
+	sBullet_texture.loadFromFile("Media/survivor/FullMetalJacket.png");
+	Animation sBullet(sBullet_texture, 0, 0, 5, 4, 1, 0.8);
+
+
 	Player player(300, 300, lvl);
+	Player* p = &player;
 	Sprite sp;
 
+	std::list<Entity*> entities;
 
 	while (window.isOpen())
 	{
@@ -33,6 +45,15 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+
+
+			if (event.type == Event::KeyPressed)
+				if (event.key.code == Keyboard::Space)
+				{
+					Bullet* b = new Bullet();
+					b->settings(sBullet, p->x, p->y, p->angle, 10);
+					entities.push_back(b);
+				}
 		}
 
 
@@ -57,6 +78,9 @@ int main()
 
 		if (Mouse::isButtonPressed(Mouse::Left)) {
 			player.Shoot();
+			Bullet* b = new Bullet();
+			b->settings(sBullet, p->x, p->y, p->angle, 10);
+			entities.push_back(b);
 		}
 
 		if (Mouse::isButtonPressed(Mouse::Right)) {
@@ -73,16 +97,27 @@ int main()
 
 
 		player.update(time, pos);
+		for (auto i = entities.begin(); i != entities.end();)
+		{
+			Entity* e = *i;
+
+			e->update();
+			e->anim.update();
+
+			if (e->life == false) { i = entities.erase(i); delete e; }
+			else i++;
+		}
 
 
 		window.clear();
-		
+
 		/////////////////////////////Рисуем карту/////////////////////
 		window.clear(Color(77, 83, 140));
 		lvl.Draw(window);
 		sp = player.getSprite();
 		window.draw(sp);
 		window.setView(player.getViev());
+		for (auto i : entities) i->draw(window);
 		window.display();
 
 	}

@@ -87,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\DenDen\source\repos\PinkFerret\PinkFerret\Source\TiledMapLoader;C:\Users\DenDen\source\repos\PinkFerret\PinkFerret\Source\TinyXML;$(SolutionDir)\External\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\PinkFerret\Source\TiledMapLoader;$(SolutionDir)\PinkFerret\Source\TinyXML;$(SolutionDir)\External\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,6 +142,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Objects.cpp" />
+    <ClCompile Include="Source\Animation.cpp" />
+    <ClCompile Include="Source\Bullet.cpp" />
+    <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\TiledMapLoader\level.cpp" />
@@ -153,6 +156,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects.h" />
+    <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\Bullet.h" />
+    <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\map.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\TiledMapLoader\level.h" />
