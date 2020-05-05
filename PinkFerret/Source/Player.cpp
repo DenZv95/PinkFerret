@@ -83,9 +83,9 @@ void Player::update(float time, Vector2f positionMouse)
 	}
 
 	sprite.setPosition(x, y);
-	
 
-	sprite.setRotation((atan2(positionMouse.y - y, positionMouse.x - x)) * 180 / 3.14159265);
+	angle = (atan2(positionMouse.y - y, positionMouse.x - x)) * 180 / 3.14159265;
+	sprite.setRotation(angle);
 	if (amimationFinish) {
 		state = idle;
 	}
@@ -104,7 +104,7 @@ void Player::Move(float dX, float dY, float time)
 	if (amimationFinish) {
 		state = move;
 	}
-	
+
 	x += dX * time;
 	y += dY * time;
 	checkCollisionWithMap(dX, dY);
@@ -140,7 +140,7 @@ View Player::getViev()
 }
 
 FloatRect Player::getRect() {
-	return FloatRect(x-95, y-90, 190, 180); 
+	return FloatRect(x - 95, y - 90, 190, 180);
 }
 
 void Player::checkCollisionWithMap(float Dx, float Dy)
@@ -154,21 +154,21 @@ void Player::checkCollisionWithMap(float Dx, float Dy)
 				//std::cout << "Pla: " << getRect().left << ' ' << getRect().top << std::endl;
 				//std::cout << "TheWall: " << obj[i].rect.left << ' ' << obj[i].rect.top << std::endl;
 				/**/
-				if (Dy > 0) { 
+				if (Dy > 0) {
 					y = obj[i].rect.top + obj[i].rect.height - 64 - 90;
 				}
-				if (Dy < 0) { 
-					y = obj[i].rect.top + obj[i].rect.height + 90;   
+				if (Dy < 0) {
+					y = obj[i].rect.top + obj[i].rect.height + 90;
 				}
-				
+
 				if (Dx > 0) {
 					x = obj[i].rect.left + obj[i].rect.width - 64 - 95;
 				}
-				
+
 				if (Dx < 0) {
 					x = obj[i].rect.left + obj[i].rect.width + 95;
 				}
 			}
 		}
-		
+
 }
