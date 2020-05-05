@@ -4,7 +4,7 @@ Player::Player(float X, float Y, Level& level)
 {
 	obj = level.GetAllObjects();
 	x = X; y = Y;
-	view.reset(sf::FloatRect(x, y, 1280, 1024));
+	view.reset(sf::FloatRect(x, y, 1280, 800));
 	view.setCenter(x + 100, y);
 	move_image.loadFromFile("Media/survivor/handgun/survivor-move_handgun.png");
 	move_image.createMaskFromColor(Color(255, 255, 255));
@@ -98,7 +98,6 @@ void Player::Meleeattack()
 	}
 }
 
-
 void Player::Move(float dX, float dY, float time)
 {
 
@@ -143,6 +142,7 @@ View Player::getViev()
 FloatRect Player::getRect() {
 	return FloatRect(x-95, y-90, 190, 180); 
 }
+
 void Player::checkCollisionWithMap(float Dx, float Dy)
 {
 

@@ -7,7 +7,7 @@
 using namespace sf;
 int main()
 {
-	RenderWindow window(sf::VideoMode(1280, 1024), "Game");
+	RenderWindow window(sf::VideoMode(1280, 800), "Game");
 	float dX = 0;
 	float dY = 0;
 
