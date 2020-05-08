@@ -1,6 +1,5 @@
 #include "Entity.h"
-#include <Objects.h>
-#include <level.h>
+
 
 class Bullet : public Entity
 {
@@ -10,6 +9,5 @@ public:
     void draw(RenderWindow& app, float time) override;
     void update() override;
 private:
-    std::vector<Object> obj;
-    void checkCollisionWithMap(float Dx, float Dy);
+    void checkCollisionWithMap(float Dx, float Dy) override;
 };

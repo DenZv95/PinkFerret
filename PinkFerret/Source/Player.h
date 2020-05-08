@@ -1,6 +1,5 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "level.h"
 #include "Entity.h"
 
 using namespace sf;
@@ -16,7 +15,6 @@ public:
 	void Shoot();
 
 private:
-	std::vector<Object> obj;
 	View view;
 	int state = 0;
 	enum State
@@ -29,7 +27,7 @@ private:
 	};
 	bool amimationFinish;
 	int ammo = 2;
-	void checkCollisionWithMap(float Dx, float Dy);
+	void checkCollisionWithMap(float Dx, float Dy) override;
 	Texture move_texture;
 	Texture meleeattack_texture;
 	Texture reload_texture;
