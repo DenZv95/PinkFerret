@@ -30,14 +30,18 @@ int main()
 
 
 	Player* player = new Player(lvl);
-	player->settings(300, 300, 190, 180, 1);
+	//player->settings(300, 300, 190, 180, 1);
+	//player->settings(800, 300, 190, 180, 1);
+	player->settings(800, 2200, 190, 180, 1);
 	entities.push_back(player);
 
 	Zombie* zombie = new Zombie(lvl, player);
-	zombie->settings(600, 300, 190, 180, 1);
+	zombie->settings(2700, 2300, 190, 180, 1);
 	entities.push_back(zombie);
-	Sprite sp;
 
+	Zombie* zombie2 = new Zombie(lvl, player);
+	zombie2->settings(2700, 2700, 190, 180, 1);
+	entities.push_back(zombie2);
 
 
 	while (window.isOpen())
@@ -53,21 +57,6 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-
-
-			/*
-			if (event.type == Event::KeyPressed)
-				if (event.key.code == Keyboard::Space)
-				{
-					Bullet* b = new Bullet();
-					//x = 20 * cos(angle) - 30 * sin(angle)
-					//y = 20 * sin(angle) + 30 * cos(angle)
-					//b->settings(sBullet, p->x, p->y, p->angle, 10);
-					b->settings(sBullet, p->x + (100 * cos(p->angle) - 100 * sin(p->angle)), p->y + (100 * sin(p->angle) + 100 * cos(p->angle)), p->angle, 10);
-
-					entities.push_back(b);
-				}
-				*/
 		}
 
 
@@ -89,38 +78,50 @@ int main()
 			player->Move(0.f, 0.12f, time);
 		}
 
-
+		
 		if (Mouse::isButtonPressed(Mouse::Left)) {
-			player->Shoot();
-			Bullet* b = new Bullet(sBullet, lvl);
-
-			//b->settings(sBullet, p->x, p->y, p->angle, 10);
-			b->settings(player->x + (112 * cos(player->angle * 0.017453f) - 48 * sin(player->angle * 0.017453f)), player->y + (112 * sin(player->angle * 0.017453f) + 48 * cos(player->angle * 0.017453f)), 4, 5, player->angle);
-			entities.push_back(b);
+			player->Shoot(entities, sBullet, lvl);
 		}
-
+		
 		if (Mouse::isButtonPressed(Mouse::Right)) {
-			player->Meleeattack();
+			player->Meleeattack(entities);
 		}
-
+		
 		if (Keyboard::isKeyPressed(Keyboard::R)) {
 			player->Reload();
 		}
+	
 
-
-		Vector2i pixelPos = Mouse::getPosition(window);
-		Vector2f pos = window.mapPixelToCoords(pixelPos);
-
+		for (auto a : entities)
+		{
+			if (a -> life)
+			{
+				for (auto b : entities)
+				{
+					if (a->name == "Zombie" && b->name == "Bullet")
+						if (a->getRect().intersects(b->getRect()))
+						{
+							a->damage();
+							b->damage();
+						}
+				}
+			}
+		}
 
 		//player.update(time, pos);
 		for (auto i = entities.begin(); i != entities.end();)
 		{
 			Entity* e = *i;
 
-			e->update();
+			e->update(time);
 			//e->anim.update();
 
-			if (e->life == false) { i = entities.erase(i); delete e; }
+			if (e->life == false) 
+			{ 
+				i = entities.erase(i); 
+				if (e -> name != "Player")
+					delete e; 
+			}
 			else i++;
 		}
 

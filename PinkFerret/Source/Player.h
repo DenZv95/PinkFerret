@@ -1,22 +1,25 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+#include <list>
+
+#include <sstream>
 
 using namespace sf;
 class Player : public Entity
 {
 public:
 	Player(Level& level);
-	void update() override;
+	void update(float time) override;
 	void draw(RenderWindow& app, float time) override;
-	void Meleeattack();
+	void Meleeattack(std::list<Entity*>& entities);
 	void Move(float dX, float dY, float time);
 	void Reload();
-	void Shoot();
-
+	void Shoot(std::list<Entity*>& entities, Animation& sBullet, Level& lvl);
+	int state = 0;
 private:
 	View view;
-	int state = 0;
+	
 	enum State
 	{
 		idle,
@@ -25,7 +28,7 @@ private:
 		shoot,
 		meleeattack
 	};
-	bool amimationFinish;
+	bool amimationFinish, tytyry = 0;
 	int ammo = 2;
 	void checkCollisionWithMap(float Dx, float Dy) override;
 	Texture move_texture;
@@ -37,4 +40,6 @@ private:
 	Animation* aReload;
 	Animation* aShoot;
 	Sprite sprite;
+	Font font;
+
 };

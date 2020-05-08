@@ -8,7 +8,7 @@ const int H = 800;
 Bullet::Bullet(Animation& a, Level& level)
 {
 	obj = level.GetAllObjects();
-	name = "bullet";
+	name = "Bullet";
 	anim = a;
 }
 
@@ -20,7 +20,7 @@ void Bullet::draw(RenderWindow& app, float time)
     app.draw(anim.sprite);
 }
 
-void Bullet::update()
+void Bullet::update(float time)
 {
     dx = cos(angle * DEGTORAD) * 6;
     dy = sin(angle * DEGTORAD) * 6;
@@ -29,7 +29,7 @@ void Bullet::update()
 	checkCollisionWithMap(dx, dy);
 
 
-    if (x > W || x<0 || y>H || y < 0) life = 0;
+    //if (x > W || x<0 || y>H || y < 0) life = 0;
 
 }
 

@@ -1,10 +1,10 @@
 #include "Zombie.h"
 
-
 Zombie::Zombie(Level& level, Player* player)
 {
 
-
+	life = 20;
+	name = "Zombie";
 	move_texture.loadFromFile("Media/zombie/zombie-idle.png");
 	meleeattack_texture.loadFromFile("Media/zombie/zombie-attack.png");
 
@@ -19,12 +19,24 @@ Zombie::Zombie(Level& level, Player* player)
 	pl = player;
 }
 
-void Zombie::update()
+void Zombie::update(float time)
 {
+
+	dx = cos(angle * 0.017453f) * 0.1 * time;
+    dy = sin(angle * 0.017453f) * 0.1 * time;
 	if (getRect().intersects(pl->getRect()))
 	{
-		state = meleeattack;
+		if (state != meleeattack) {
+			state = meleeattack;
+			pl->damage();
+			
+		}
+		dx = 0; dy = 0;
 	}
+	checkCollisionWithMap(dx, dy);
+	if (dx > 0 || dy > 0) state = move;
+	x += dx;
+	y += dy;
 }
 
 void Zombie::draw(RenderWindow& window, float time)
@@ -48,9 +60,10 @@ void Zombie::draw(RenderWindow& window, float time)
 		sprite = aMove->sprite;
 		break;
 	}
-
+	angle = (atan2(pl->y - y, pl->x - x)) * 180 / 3.14159265;
+	sprite.setRotation(angle);
 	sprite.setPosition(x, y);
-	sprite.setRotation((atan2(200 - y, 300 - x)) * 180 / 3.14159265);
+	//sprite.setRotation((atan2(200 - y, 300 - x)) * 180 / 3.14159265);
 	if (amimationFinish) {
 		state = idle;
 	}
@@ -72,8 +85,8 @@ void Zombie::checkCollisionWithMap(float Dx, float Dy)
 		{
 			if (obj[i].name == "TheWall")
 			{
-
-				if (Dy > 0) {
+				dx = 0; dy = 0;
+				/*if (Dy > 0) {
 					y = obj[i].rect.top + obj[i].rect.height - 64 - 90;
 				}
 				if (Dy < 0) {
@@ -86,21 +99,8 @@ void Zombie::checkCollisionWithMap(float Dx, float Dy)
 
 				if (Dx < 0) {
 					x = obj[i].rect.left + obj[i].rect.width + 95;
-				}
+				}*/
 			}
 		}
 
 }
-
-void Zombie::Move(float dX, float dY, float time)
-{
-	if (amimationFinish) {
-		state = move;
-	}
-	x += dX * time;
-	y += dY * time;
-
-	dX = 0;
-	dY = 0;
-}
-

@@ -20,6 +20,13 @@ void Entity::settings(int X, int Y, float Height, float Width, float Angle)
     angle = Angle;
 }
 
+
+void Entity::damage()
+{
+    life -= 10;
+    if (life < 1) life = 0;
+}
+
 FloatRect Entity::getRect() 
 {
     return FloatRect(x - height/2, y - width/2, height, width);

@@ -8,14 +8,11 @@ class Zombie : public Entity
 {
 public:
 	Zombie(Level& level, Player* player);
-	void update() override;
+	void update(float time) override;
 	void draw(RenderWindow& app, float time) override;
 	void Meleeattack();
-	void Move(float dX, float dY, float time);
 private:
 	int state = 0;
-	float CurrentFrameMove = 0;
-	float CurrentFrame = 0;
 	enum State
 	{
 		idle,
