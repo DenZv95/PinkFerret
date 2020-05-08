@@ -1,19 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
+#include "Player.h"
 
 using namespace sf;
-class Zombie
+class Zombie : public Entity
 {
 public:
-	Zombie(float X, float Y);
-	void update(float time, Vector2f positionMouse);
+	Zombie(Level& level, Player* player);
+	void update() override;
+	void draw(RenderWindow& app, float time) override;
 	void Meleeattack();
 	void Move(float dX, float dY, float time);
-	Sprite getSprite();
-	View getViev();
 private:
-	View view;
-	float x, y = 0;
 	int state = 0;
 	float CurrentFrameMove = 0;
 	float CurrentFrame = 0;
@@ -23,13 +22,12 @@ private:
 		move,
 		meleeattack
 	};
-	bool amimationFinish, isMove, isSelect;
-	
-	Image move_image;
+	bool amimationFinish;
+	void checkCollisionWithMap(float Dx, float Dy) override;
 	Texture move_texture;
-
-	Image meleeattack_image;
 	Texture meleeattack_texture;
-
+	Animation* aMove;
+	Animation* aMeleeattack;
 	Sprite sprite;
+	Player* pl;
 };

@@ -1,62 +1,60 @@
 #include "Zombie.h"
 
-Zombie::Zombie(float X, float Y)
+
+Zombie::Zombie(Level& level, Player* player)
 {
-	x = X; y = Y;
-	view.reset(sf::FloatRect(x, y, 1280, 1024));
-	view.setCenter(x + 100, y);
-	move_image.loadFromFile("Media/zombie/zombie-idle.png");
-	move_image.createMaskFromColor(Color(255, 255, 255));
-	move_texture.loadFromImage(move_image);
 
-	sprite.setTextureRect(IntRect(0, 0, 260, 230));
 
-	meleeattack_image.loadFromFile("Media/zombie/zombie-attack.png");
-	meleeattack_image.createMaskFromColor(Color(255, 0, 0));
-	meleeattack_texture.loadFromImage(meleeattack_image);
+	move_texture.loadFromFile("Media/zombie/zombie-idle.png");
+	meleeattack_texture.loadFromFile("Media/zombie/zombie-attack.png");
+
+	aMove = new Animation(move_texture, 0, 0, 241, 222, 17, 0.007f);
+	aMeleeattack = new Animation(meleeattack_texture, 0, 0, 318, 294, 9, 0.012f);
 
 	sprite.setTexture(move_texture);
+	sprite.setTextureRect(IntRect(0, 0, 260, 230));
 	amimationFinish = true;
+
+	obj = level.GetAllObjects();
+	pl = player;
 }
 
-void Zombie::update(float time, Vector2f positionMouse)
+void Zombie::update()
+{
+	if (getRect().intersects(pl->getRect()))
+	{
+		state = meleeattack;
+	}
+}
+
+void Zombie::draw(RenderWindow& window, float time)
 {
 	switch (state)
 	{
 	case move:
-		CurrentFrameMove += 0.007f * time;
-		if (CurrentFrameMove > 17) {
-			CurrentFrameMove = 0;
-		}
-		sprite.setTexture(move_texture);
-		sprite.setTextureRect(IntRect(241 * int(CurrentFrameMove), 0, 241, 222));
+		aMove->update(time);
+		sprite = aMove->sprite;
 		break;
 	case meleeattack:
 		amimationFinish = false;
-		CurrentFrame += 0.012 * time;
-		if (CurrentFrame > 9) {
-			CurrentFrame = 0;
+		if (aMeleeattack->isEnd())
+		{
 			amimationFinish = true;
 		}
-		sprite.setTexture(meleeattack_texture);
-		sprite.setTextureRect(IntRect((318 * int(CurrentFrame) + 36), 38, 318, 294));
+		aMeleeattack->update(time);
+		sprite = aMeleeattack->sprite;
 		break;
 	default:
-		sprite.setTexture(move_texture);
-		sprite.setTextureRect(IntRect(241 * int(CurrentFrameMove), 0, 241, 222));
+		sprite = aMove->sprite;
 		break;
 	}
 
 	sprite.setPosition(x, y);
-	sprite.setOrigin(241 / 2, 222 / 2);
-	//float dX = positionMouse.x - x;
-	//float dY = positionMouse.y - y;
-	//float rotation = (atan2(dY, dX)) * 180 / 3.14159265;
-	//sprite.setRotation(rotation);
-	sprite.setRotation((atan2(positionMouse.y - y, positionMouse.x - x)) * 180 / 3.14159265);
+	sprite.setRotation((atan2(200 - y, 300 - x)) * 180 / 3.14159265);
 	if (amimationFinish) {
 		state = idle;
 	}
+	window.draw(sprite);
 }
 
 void Zombie::Meleeattack()
@@ -66,6 +64,33 @@ void Zombie::Meleeattack()
 	}
 }
 
+void Zombie::checkCollisionWithMap(float Dx, float Dy)
+{
+
+	for (int i = 0; i < obj.size(); i++)
+		if (getRect().intersects(obj[i].rect))
+		{
+			if (obj[i].name == "TheWall")
+			{
+
+				if (Dy > 0) {
+					y = obj[i].rect.top + obj[i].rect.height - 64 - 90;
+				}
+				if (Dy < 0) {
+					y = obj[i].rect.top + obj[i].rect.height + 90;
+				}
+
+				if (Dx > 0) {
+					x = obj[i].rect.left + obj[i].rect.width - 64 - 95;
+				}
+
+				if (Dx < 0) {
+					x = obj[i].rect.left + obj[i].rect.width + 95;
+				}
+			}
+		}
+
+}
 
 void Zombie::Move(float dX, float dY, float time)
 {
@@ -77,20 +102,5 @@ void Zombie::Move(float dX, float dY, float time)
 
 	dX = 0;
 	dY = 0;
-	view.setCenter(x + 100, y);
-	
-	isMove = false; 
-	isSelect = false;
-}
-
-
-Sprite Zombie::getSprite()
-{
-	return sprite;
-}
-
-View Zombie::getViev()
-{
-	return view;
 }
 
