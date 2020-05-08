@@ -24,13 +24,17 @@ int main()
 	Texture sBullet_texture;
 	sBullet_texture.loadFromFile("Media/survivor/FullMetalJacket.png");
 	Animation sBullet(sBullet_texture, 0, 0, 5, 4, 1, 0.8);
-
+	std::list<Entity*> entities;
 	float time;
-	Player player(300, 300, lvl);
-	Player* p = &player;
+	//Player player(300, 300, lvl);
+	//Player* p = &player;
+	Player* player = new Player(lvl);
+	player -> settings(300, 300, 190, 180, 1);
+	
+	entities.push_back(player);
 	Sprite sp;
 
-	std::list<Entity*> entities;
+	
 
 	while (window.isOpen())
 	{
@@ -65,37 +69,38 @@ int main()
 
 
 		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
-			player.Move(-0.12f, 0.f, time);
+			player -> Move(-0.12f, 0.f, time);
 		}
 
 
 		if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
-			player.Move(0.12f, 0.f, time);
+			player->Move(0.12f, 0.f, time);
 		}
 
 		if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
-			player.Move(0.f, -0.12f, time);
+			player->Move(0.f, -0.12f, time);
 		}
 
 		if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
-			player.Move(0.f, 0.12f, time);
+			player->Move(0.f, 0.12f, time);
 		}
 
 
 		if (Mouse::isButtonPressed(Mouse::Left)) {
-			player.Shoot();
+			player -> Shoot();
 			Bullet* b = new Bullet(sBullet);
+			
 			//b->settings(sBullet, p->x, p->y, p->angle, 10);
-			b->settings(p->x + (112 * cos(p->angle * 0.017453f) - 48 * sin(p->angle * 0.017453f)), p->y + (112 * sin(p->angle * 0.017453f) + 48 * cos(p->angle * 0.017453f)), 4,5, p->angle);
+			b->settings(player->x + (112 * cos(player->angle * 0.017453f) - 48 * sin(player->angle * 0.017453f)), player->y + (112 * sin(player->angle * 0.017453f) + 48 * cos(player->angle * 0.017453f)), 4,5, player->angle);
 			entities.push_back(b);
 		}
 
 		if (Mouse::isButtonPressed(Mouse::Right)) {
-			player.Meleeattack();
+			player -> Meleeattack();
 		}
 
 		if (Keyboard::isKeyPressed(Keyboard::R)) {
-			player.Reload();
+			player -> Reload();
 		}
 
 
@@ -103,7 +108,7 @@ int main()
 		Vector2f pos = window.mapPixelToCoords(pixelPos);
 
 
-		player.update(time, pos);
+		//player.update(time, pos);
 		for (auto i = entities.begin(); i != entities.end();)
 		{
 			Entity* e = *i;
@@ -121,9 +126,9 @@ int main()
 		/////////////////////////////Рисуем карту/////////////////////
 		window.clear(Color(77, 83, 140));
 		lvl.Draw(window);
-		sp = player.getSprite();
-		window.draw(sp);
-		window.setView(player.getViev());
+		//sp = player.getSprite();
+		//window.draw(sp);
+		
 
 		for (auto i : entities) i->draw(window);
 		window.display();

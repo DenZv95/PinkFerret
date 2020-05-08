@@ -1,21 +1,21 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "level.h"
+#include "Entity.h"
+
 using namespace sf;
-class Player
+class Player : public Entity
 {
 public:
-	float x, y, angle = 0;
-	Player(float X, float Y, Level& level);
-	void update(float time, Vector2f positionMouse);
+	Player(Level& level);
+	void update() override;
+	void draw(RenderWindow& app) override;
 	void Meleeattack();
 	void Move(float dX, float dY, float time);
 	void Reload();
 	void Shoot();
 	void checkCollisionWithMap(float Dx, float Dy);
-	Sprite getSprite();
-	FloatRect getRect();
-	View getViev();
+
 private:
 	std::vector<Object> obj;
 	View view;
@@ -45,6 +45,11 @@ private:
 
 	Image shoot_image;
 	Texture shoot_texture;
+
+	Animation aMove;
+	Animation aMeleeattack;
+	Animation aReload;
+	Animation aShoot;
 
 	Sprite sprite;
 };
