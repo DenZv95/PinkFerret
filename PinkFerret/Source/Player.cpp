@@ -11,9 +11,9 @@ Player::Player(Level& level)
 	shoot_texture.loadFromFile("Media/survivor/handgun/survivor-shoot_handgun.png");
 
 	aMove = new Animation(move_texture,					0, 0, 260, 230, 20, 0.007f);
-	aMeleeattack = new Animation(meleeattack_texture,	4, 0, 300, 240, 15, 0.01f);
-	aReload = new Animation(reload_texture,				4, 0, 260, 230, 15, 0.011f);
-	aShoot = new Animation(shoot_texture,				4, 0, 260, 230, 3, 0.009f);
+	aMeleeattack = new Animation(meleeattack_texture,	-10, 0, 300, 240, 15, 0.01f);
+	aReload = new Animation(reload_texture,				3, 0, 260, 230, 15, 0.011f);
+	aShoot = new Animation(shoot_texture,				0, 0, 260, 230, 3, 0.009f);
 
 	sprite.setTexture(move_texture);
 	sprite.setOrigin(260 / 2, 230 / 2);
