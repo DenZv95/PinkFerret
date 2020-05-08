@@ -34,22 +34,15 @@ private:
 	bool amimationFinish;
 	int ammo = 2;
 
-	Image move_image;
 	Texture move_texture;
-
-	Image meleeattack_image;
 	Texture meleeattack_texture;
-
-	Image reload_image;
 	Texture reload_texture;
-
-	Image shoot_image;
 	Texture shoot_texture;
 
-	Animation aMove;
-	Animation aMeleeattack;
-	Animation aReload;
-	Animation aShoot;
+	Animation* aMove;
+	Animation* aMeleeattack;
+	Animation* aReload;
+	Animation* aShoot;
 
 	Sprite sprite;
 };

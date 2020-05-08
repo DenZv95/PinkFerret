@@ -5,25 +5,15 @@ Player::Player(Level& level)
 	obj = level.GetAllObjects();
 
 	view.reset(sf::FloatRect(x, y, 1280, 800));
-//	view.setCenter(x + 100, y);
+	move_texture.loadFromFile("Media/survivor/handgun/survivor-move_handgun.png");
+	meleeattack_texture.loadFromFile("Media/survivor/handgun/survivor-meleeattack_handgun.png");
+	reload_texture.loadFromFile("Media/survivor/handgun/survivor-reload_handgun.png");
+	shoot_texture.loadFromFile("Media/survivor/handgun/survivor-shoot_handgun.png");
 
-	move_image.loadFromFile("Media/survivor/handgun/survivor-move_handgun.png");
-	move_image.createMaskFromColor(Color(255, 255, 255));
-	move_texture.loadFromImage(move_image);
-
-	sprite.setTextureRect(IntRect(0, 0, 260, 230));
-
-	meleeattack_image.loadFromFile("Media/survivor/handgun/survivor-meleeattack_handgun.png");
-	meleeattack_image.createMaskFromColor(Color(255, 0, 0));
-	meleeattack_texture.loadFromImage(meleeattack_image);
-
-	reload_image.loadFromFile("Media/survivor/handgun/survivor-reload_handgun.png");
-	reload_image.createMaskFromColor(Color(255, 255, 255));
-	reload_texture.loadFromImage(reload_image);
-
-	shoot_image.loadFromFile("Media/survivor/handgun/survivor-shoot_handgun.png");
-	shoot_image.createMaskFromColor(Color(255, 255, 255));
-	shoot_texture.loadFromImage(shoot_image);
+	aMove = new Animation(move_texture,					0, 0, 260, 230, 20, 0.007f);
+	aMeleeattack = new Animation(meleeattack_texture,	4, 0, 300, 240, 15, 0.01f);
+	aReload = new Animation(reload_texture,				4, 0, 260, 230, 15, 0.016f);
+	aShoot = new Animation(shoot_texture,				4, 0, 260, 230, 3, 0.009f);
 
 	sprite.setTexture(move_texture);
 	sprite.setOrigin(260 / 2, 230 / 2);
@@ -45,48 +35,40 @@ void Player::draw(RenderWindow& window)
 	switch (state)
 	{
 	case move:
-		CurrentFrameMove += 0.007f * time;
-		if (CurrentFrameMove > 20) {
-			CurrentFrameMove = 0;
-		}
-		sprite.setTexture(move_texture);
-		sprite.setTextureRect(IntRect(260 * int(CurrentFrameMove), 0, 260, 230));
+		aMove->update();
+		sprite = aMove->sprite;
 		break;
 	case shoot:
 		amimationFinish = false;
-		CurrentFrame += 0.009f * time;
-		if (CurrentFrame > 3) {
-			CurrentFrame = 0;
+		if (aShoot->isEnd())
+		{
 			amimationFinish = true;
 			ammo -= 1;
 		}
-		sprite.setTexture(shoot_texture);
-		sprite.setTextureRect(IntRect((260 * int(CurrentFrame) + 4), 0, 260, 230));
+		aShoot->update();
+		sprite = aShoot->sprite;
 		break;
 	case reload:
 		amimationFinish = false;
-		CurrentFrame += 0.01f * time;
-		if (CurrentFrame > 15) {
-			CurrentFrame = 0;
+		if (aReload->isEnd())
+		{
 			amimationFinish = true;
 			ammo = 5;
 		}
-		sprite.setTexture(reload_texture);
-		sprite.setTextureRect(IntRect((260 * int(CurrentFrame) + 4), 0, 260, 230));
+		aReload->update();
+		sprite = aReload -> sprite;
 		break;
 	case meleeattack:
 		amimationFinish = false;
-		CurrentFrame += 0.016f * time;
-		if (CurrentFrame > 15) {
-			CurrentFrame = 0;
+		if (aMeleeattack->isEnd())
+		{
 			amimationFinish = true;
 		}
-		sprite.setTexture(meleeattack_texture);
-		sprite.setTextureRect(IntRect((300 * int(CurrentFrame) + 6), 4, 300, 240));
+		aMeleeattack->update();
+		sprite = aMeleeattack->sprite;
 		break;
 	default:
-		sprite.setTexture(move_texture);
-		sprite.setTextureRect(IntRect(260 * int(CurrentFrameMove), 0, 260, 230));
+		sprite = aMove->sprite;
 		break;
 	}
 
@@ -139,21 +121,6 @@ void Player::Shoot()
 			state = shoot;
 	}
 }
-/*
-Sprite Player::getSprite()
-{
-	return sprite;
-}
-
-View Player::getViev()
-{
-	return view;
-}
-
-FloatRect Player::getRect() {
-	return FloatRect(x - 95, y - 90, 190, 180);
-}
-*/
 
 void Player::checkCollisionWithMap(float Dx, float Dy)
 {
@@ -163,9 +130,7 @@ void Player::checkCollisionWithMap(float Dx, float Dy)
 		{
 			if (obj[i].name == "TheWall")
 			{
-				//std::cout << "Pla: " << getRect().left << ' ' << getRect().top << std::endl;
-				//std::cout << "TheWall: " << obj[i].rect.left << ' ' << obj[i].rect.top << std::endl;
-				/**/
+
 				if (Dy > 0) {
 					y = obj[i].rect.top + obj[i].rect.height - 64 - 90;
 				}
