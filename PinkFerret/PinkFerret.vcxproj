@@ -153,6 +153,7 @@
     <ClCompile Include="Source\TinyXML\tinyxml.cpp" />
     <ClCompile Include="Source\TinyXML\tinyxmlerror.cpp" />
     <ClCompile Include="Source\TinyXML\tinyxmlparser.cpp" />
+    <ClCompile Include="Source\Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Objects.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Source\TiledMapLoader\Objects.h" />
     <ClInclude Include="Source\TinyXML\tinystr.h" />
     <ClInclude Include="Source\TinyXML\tinyxml.h" />
+    <ClInclude Include="Source\Zombie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
