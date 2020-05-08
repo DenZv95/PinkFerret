@@ -9,10 +9,11 @@ Bullet::Bullet(Animation& a)
     anim = a;
 }
 
-void Bullet::draw(RenderWindow& app) 
+void Bullet::draw(RenderWindow& app, float time)
 {
     anim.sprite.setPosition(x, y);
     anim.sprite.setRotation(angle);
+    anim.update(time);
     app.draw(anim.sprite);
 }
 
@@ -24,5 +25,5 @@ void Bullet::update()
     y += dy;
 
     if (x > W || x<0 || y>H || y < 0) life = 0;
-    anim.update();
+
 }
