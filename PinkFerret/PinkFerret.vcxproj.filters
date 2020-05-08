@@ -39,13 +39,7 @@
     <ClCompile Include="Source\TinyXML\tinyxmlparser.cpp">
       <Filter>Файлы ресурсов\TinyXML</Filter>
     </ClCompile>
-    <ClCompile Include="Objects.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Source\TiledMapLoader\level.cpp">
-      <Filter>Файлы ресурсов\TiledMapLoader</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\TiledMapLoader\Objects.cpp">
       <Filter>Файлы ресурсов\TiledMapLoader</Filter>
     </ClCompile>
     <ClCompile Include="Source\Animation.cpp">
@@ -59,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="Source\Zombie.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Objects.cpp">
+      <Filter>Файлы ресурсов\TiledMapLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

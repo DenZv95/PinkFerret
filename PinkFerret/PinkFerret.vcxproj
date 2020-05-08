@@ -148,7 +148,6 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\TiledMapLoader\level.cpp" />
-    <ClCompile Include="Source\TiledMapLoader\Objects.cpp" />
     <ClCompile Include="Source\TinyXML\tinystr.cpp" />
     <ClCompile Include="Source\TinyXML\tinyxml.cpp" />
     <ClCompile Include="Source\TinyXML\tinyxmlerror.cpp" />

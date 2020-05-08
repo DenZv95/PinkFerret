@@ -88,7 +88,7 @@ int main()
 
 		if (Mouse::isButtonPressed(Mouse::Left)) {
 			player -> Shoot();
-			Bullet* b = new Bullet(sBullet);
+			Bullet* b = new Bullet(sBullet, lvl);
 			
 			//b->settings(sBullet, p->x, p->y, p->angle, 10);
 			b->settings(player->x + (112 * cos(player->angle * 0.017453f) - 48 * sin(player->angle * 0.017453f)), player->y + (112 * sin(player->angle * 0.017453f) + 48 * cos(player->angle * 0.017453f)), 4,5, player->angle);
