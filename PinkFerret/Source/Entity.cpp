@@ -2,29 +2,22 @@
 Entity::Entity()
 {
     life = 1;
+    x, y, dx, dy, height, width = 1;
+    angle = 0;
 }
 
-void Entity::settings(Animation& a, int X, int Y, float Angle, int radius)
+void Entity::settings(int X, int Y, float Height, float Width, float Angle)
 {
-    anim = a;
+
     x = X; y = Y;
+    height = Height;
+    width = Width;
     angle = Angle;
-    R = radius;
 }
 
-void Entity::update() {};
-
-void Entity::draw(RenderWindow& app)
-{
-    anim.sprite.setPosition(x, y);
-    anim.sprite.setRotation(angle + 90);
-    app.draw(anim.sprite);
-
-    CircleShape circle(R);
-    circle.setFillColor(Color(255, 0, 0, 170));
-    circle.setPosition(x, y);
-    circle.setOrigin(R, R);
-    //app.draw(circle);
+FloatRect Entity::getRect() {
+    return FloatRect(x - height/2, y - width/2, height, width);
 }
+
 
 Entity::~Entity() {};

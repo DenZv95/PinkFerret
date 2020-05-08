@@ -25,7 +25,7 @@ int main()
 	sBullet_texture.loadFromFile("Media/survivor/FullMetalJacket.png");
 	Animation sBullet(sBullet_texture, 0, 0, 5, 4, 1, 0.8);
 
-
+	float time;
 	Player player(300, 300, lvl);
 	Player* p = &player;
 	Sprite sp;
@@ -35,7 +35,7 @@ int main()
 	while (window.isOpen())
 	{
 
-		float time = clock.getElapsedTime().asMicroseconds();
+		time = clock.getElapsedTime().asMicroseconds();
 		clock.restart();
 		time = time / 800;
 
@@ -47,6 +47,7 @@ int main()
 				window.close();
 
 
+			/*
 			if (event.type == Event::KeyPressed)
 				if (event.key.code == Keyboard::Space)
 				{
@@ -58,6 +59,7 @@ int main()
 
 					entities.push_back(b);
 				}
+				*/
 		}
 
 
@@ -82,9 +84,9 @@ int main()
 
 		if (Mouse::isButtonPressed(Mouse::Left)) {
 			player.Shoot();
-			Bullet* b = new Bullet();
+			Bullet* b = new Bullet(sBullet);
 			//b->settings(sBullet, p->x, p->y, p->angle, 10);
-			b->settings(sBullet, p->x + (112 * cos(p->angle * 0.017453f) - 48 * sin(p->angle * 0.017453f)), p->y + (112 * sin(p->angle * 0.017453f) + 48 * cos(p->angle * 0.017453f)), p->angle, 10);
+			b->settings(p->x + (112 * cos(p->angle * 0.017453f) - 48 * sin(p->angle * 0.017453f)), p->y + (112 * sin(p->angle * 0.017453f) + 48 * cos(p->angle * 0.017453f)), 4,5, p->angle);
 			entities.push_back(b);
 		}
 
@@ -107,7 +109,7 @@ int main()
 			Entity* e = *i;
 
 			e->update();
-			e->anim.update();
+			//e->anim.update();
 
 			if (e->life == false) { i = entities.erase(i); delete e; }
 			else i++;
@@ -122,6 +124,7 @@ int main()
 		sp = player.getSprite();
 		window.draw(sp);
 		window.setView(player.getViev());
+
 		for (auto i : entities) i->draw(window);
 		window.display();
 
