@@ -51,7 +51,11 @@ int main()
 				if (event.key.code == Keyboard::Space)
 				{
 					Bullet* b = new Bullet();
-					b->settings(sBullet, p->x, p->y, p->angle, 10);
+					//x = 20 * cos(angle) - 30 * sin(angle)
+					//y = 20 * sin(angle) + 30 * cos(angle)
+					//b->settings(sBullet, p->x, p->y, p->angle, 10);
+					b->settings(sBullet, p->x + (100 * cos(p->angle) - 100 * sin(p->angle)), p->y + (100 * sin(p->angle) + 100 * cos(p->angle)), p->angle, 10);
+
 					entities.push_back(b);
 				}
 		}
@@ -79,7 +83,8 @@ int main()
 		if (Mouse::isButtonPressed(Mouse::Left)) {
 			player.Shoot();
 			Bullet* b = new Bullet();
-			b->settings(sBullet, p->x, p->y, p->angle, 10);
+			//b->settings(sBullet, p->x, p->y, p->angle, 10);
+			b->settings(sBullet, p->x + (112 * cos(p->angle * 0.017453f) - 48 * sin(p->angle * 0.017453f)), p->y + (112 * sin(p->angle * 0.017453f) + 48 * cos(p->angle * 0.017453f)), p->angle, 10);
 			entities.push_back(b);
 		}
 
