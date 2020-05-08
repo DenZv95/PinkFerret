@@ -1,11 +1,12 @@
 #include "Player.h"
 
-Player::Player(float X, float Y, Level& level)
+Player::Player(Level& level)
 {
 	obj = level.GetAllObjects();
-	x = X; y = Y;
+
 	view.reset(sf::FloatRect(x, y, 1280, 800));
-	view.setCenter(x + 100, y);
+//	view.setCenter(x + 100, y);
+
 	move_image.loadFromFile("Media/survivor/handgun/survivor-move_handgun.png");
 	move_image.createMaskFromColor(Color(255, 255, 255));
 	move_texture.loadFromImage(move_image);
@@ -31,10 +32,17 @@ Player::Player(float X, float Y, Level& level)
 
 }
 
-void Player::update(float time, Vector2f positionMouse)
+void Player::update()
+{
+}
+
+void Player::draw(RenderWindow& window)
 {
 
-
+	float time = 1;
+	Vector2i pixelPos = Mouse::getPosition(window);
+	Vector2f positionMouse = window.mapPixelToCoords(pixelPos);
+	
 	switch (state)
 	{
 	case move:
@@ -90,6 +98,9 @@ void Player::update(float time, Vector2f positionMouse)
 	if (amimationFinish) {
 		state = idle;
 	}
+	view.setCenter(x + 100, y);
+	window.setView(view);
+	window.draw(sprite);
 }
 
 void Player::Meleeattack()
@@ -129,7 +140,7 @@ void Player::Shoot()
 			state = shoot;
 	}
 }
-
+/*
 Sprite Player::getSprite()
 {
 	return sprite;
@@ -143,6 +154,7 @@ View Player::getViev()
 FloatRect Player::getRect() {
 	return FloatRect(x - 95, y - 90, 190, 180);
 }
+*/
 
 void Player::checkCollisionWithMap(float Dx, float Dy)
 {

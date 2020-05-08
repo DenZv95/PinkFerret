@@ -2,20 +2,26 @@
 Entity::Entity()
 {
     life = 1;
-    x, y, dx, dy, height, width = 1;
+    x = 1; 
+    y = 1; 
+    dx = 1; 
+    dy = 1; 
+    height = 1;
+    width = 1;
     angle = 0;
 }
 
 void Entity::settings(int X, int Y, float Height, float Width, float Angle)
 {
-
-    x = X; y = Y;
+    x = X; 
+    y = Y;
     height = Height;
     width = Width;
     angle = Angle;
 }
 
-FloatRect Entity::getRect() {
+FloatRect Entity::getRect() 
+{
     return FloatRect(x - height/2, y - width/2, height, width);
 }
 
