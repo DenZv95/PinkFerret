@@ -12,7 +12,7 @@ Player::Player(Level& level)
 
 	aMove = new Animation(move_texture,					0, 0, 260, 230, 20, 0.007f);
 	aMeleeattack = new Animation(meleeattack_texture,	4, 0, 300, 240, 15, 0.01f);
-	aReload = new Animation(reload_texture,				4, 0, 260, 230, 15, 0.016f);
+	aReload = new Animation(reload_texture,				4, 0, 260, 230, 15, 0.011f);
 	aShoot = new Animation(shoot_texture,				4, 0, 260, 230, 3, 0.009f);
 
 	sprite.setTexture(move_texture);
@@ -25,17 +25,16 @@ void Player::update()
 {
 }
 
-void Player::draw(RenderWindow& window)
+void Player::draw(RenderWindow& window, float time)
 {
 
-	float time = 1;
 	Vector2i pixelPos = Mouse::getPosition(window);
 	Vector2f positionMouse = window.mapPixelToCoords(pixelPos);
 	
 	switch (state)
 	{
 	case move:
-		aMove->update();
+		aMove->update(time);
 		sprite = aMove->sprite;
 		break;
 	case shoot:
@@ -45,7 +44,8 @@ void Player::draw(RenderWindow& window)
 			amimationFinish = true;
 			ammo -= 1;
 		}
-		aShoot->update();
+
+		aShoot->update(time);
 		sprite = aShoot->sprite;
 		break;
 	case reload:
@@ -55,7 +55,7 @@ void Player::draw(RenderWindow& window)
 			amimationFinish = true;
 			ammo = 5;
 		}
-		aReload->update();
+		aReload->update(time);
 		sprite = aReload -> sprite;
 		break;
 	case meleeattack:
@@ -64,7 +64,7 @@ void Player::draw(RenderWindow& window)
 		{
 			amimationFinish = true;
 		}
-		aMeleeattack->update();
+		aMeleeattack->update(time);
 		sprite = aMeleeattack->sprite;
 		break;
 	default:

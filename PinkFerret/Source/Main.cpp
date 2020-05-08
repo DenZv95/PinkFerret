@@ -130,7 +130,7 @@ int main()
 		//window.draw(sp);
 		
 
-		for (auto i : entities) i->draw(window);
+		for (auto i : entities) i->draw(window, time);
 		window.display();
 
 	}

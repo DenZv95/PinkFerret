@@ -18,15 +18,15 @@ Animation::Animation(Texture& t, int x, int y, int w, int h, int count, float Sp
 }
 
 
-void Animation::update()
+void Animation::update(float time)
 {
-    Frame += speed;
+    Frame += speed * time;
     int n = frames.size();
-    if (Frame >= n) Frame -= n;
+    if (Frame > n) Frame = 0;
     if (n > 0) sprite.setTextureRect(frames[int(Frame)]);
 }
 
 bool Animation::isEnd()
 {
-    return Frame + speed >= frames.size();
+    return Frame <= 0;
 }
