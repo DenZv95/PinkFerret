@@ -155,11 +155,9 @@
     <ClCompile Include="Source\Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Objects.h" />
     <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Bullet.h" />
     <ClInclude Include="Source\Entity.h" />
-    <ClInclude Include="Source\map.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\TiledMapLoader\level.h" />
     <ClInclude Include="Source\TiledMapLoader\Objects.h" />

@@ -108,7 +108,6 @@ int main()
 			}
 		}
 
-		//player.update(time, pos);
 		for (auto i = entities.begin(); i != entities.end();)
 		{
 			Entity* e = *i;
@@ -128,7 +127,6 @@ int main()
 
 		window.clear();
 
-		/////////////////////////////Цисуем/////////////////////
 		window.clear(Color(77, 83, 140));
 		lvl.Draw(window);
 		for (auto i : entities) i->draw(window, time);

@@ -59,9 +59,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\map.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Player.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -70,9 +67,6 @@
     </ClInclude>
     <ClInclude Include="Source\TinyXML\tinyxml.h">
       <Filter>Файлы ресурсов\TinyXML</Filter>
-    </ClInclude>
-    <ClInclude Include="Objects.h">
-      <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Source\TiledMapLoader\level.h">
       <Filter>Файлы ресурсов\TiledMapLoader</Filter>

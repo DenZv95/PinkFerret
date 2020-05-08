@@ -27,10 +27,6 @@ void Bullet::update(float time)
     x += dx;
     y += dy;
 	checkCollisionWithMap(dx, dy);
-
-
-    //if (x > W || x<0 || y>H || y < 0) life = 0;
-
 }
 
 void Bullet::checkCollisionWithMap(float Dx, float Dy)

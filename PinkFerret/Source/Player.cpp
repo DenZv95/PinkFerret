@@ -5,7 +5,7 @@
 Player::Player(Level& level)
 {
 	obj = level.GetAllObjects();
-	life = 100000;
+	life = 200;
 	name = "Player";
 	view.reset(sf::FloatRect(x, y, 1280, 800));
 	move_texture.loadFromFile("Media/survivor/handgun/survivor-move_handgun.png");
@@ -18,7 +18,6 @@ Player::Player(Level& level)
 	aReload = new Animation(reload_texture,				3, 0, 260, 230, 15, 0.011f);
 	aShoot = new Animation(shoot_texture,				0, 0, 260, 230, 3, 0.009f);
 
-	//sprite.setTexture(move_texture);
 	sprite.setOrigin(260 / 2, 230 / 2);
 	amimationFinish = true;
 
@@ -61,7 +60,7 @@ void Player::draw(RenderWindow& window, float time)
 		if (aReload->isEnd())
 		{
 			amimationFinish = true;
-			ammo = 5;
+			ammo = 7;
 		}
 		
 		sprite = aReload -> sprite;
@@ -181,8 +180,6 @@ void Player::checkCollisionWithMap(float Dx, float Dy)
 			{
 
 				if (Dy > 0) {
-					//y = obj[i].rect.top + obj[i].rect.height - 64 - 90;
-					//y = obj[i].rect.top + obj[i].rect.height - obj[i].rect.height - 90;
 					y = obj[i].rect.top - 90;
 				}
 				if (Dy < 0) {
@@ -190,8 +187,6 @@ void Player::checkCollisionWithMap(float Dx, float Dy)
 				}
 
 				if (Dx > 0) {
-					//x = obj[i].rect.left + obj[i].rect.width - 64 - 95;
-					//x = obj[i].rect.left + obj[i].rect.width - obj[i].rect.width - 95;
 					x = obj[i].rect.left - 95;
 				}
 

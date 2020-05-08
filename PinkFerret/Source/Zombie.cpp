@@ -3,7 +3,7 @@
 Zombie::Zombie(Level& level, Player* player)
 {
 
-	life = 20;
+	life = 50;
 	name = "Zombie";
 	move_texture.loadFromFile("Media/zombie/zombie-idle.png");
 	meleeattack_texture.loadFromFile("Media/zombie/zombie-attack.png");
@@ -63,7 +63,6 @@ void Zombie::draw(RenderWindow& window, float time)
 	angle = (atan2(pl->y - y, pl->x - x)) * 180 / 3.14159265;
 	sprite.setRotation(angle);
 	sprite.setPosition(x, y);
-	//sprite.setRotation((atan2(200 - y, 300 - x)) * 180 / 3.14159265);
 	if (amimationFinish) {
 		state = idle;
 	}
@@ -86,20 +85,6 @@ void Zombie::checkCollisionWithMap(float Dx, float Dy)
 			if (obj[i].name == "TheWall")
 			{
 				dx = 0; dy = 0;
-				/*if (Dy > 0) {
-					y = obj[i].rect.top + obj[i].rect.height - 64 - 90;
-				}
-				if (Dy < 0) {
-					y = obj[i].rect.top + obj[i].rect.height + 90;
-				}
-
-				if (Dx > 0) {
-					x = obj[i].rect.left + obj[i].rect.width - 64 - 95;
-				}
-
-				if (Dx < 0) {
-					x = obj[i].rect.left + obj[i].rect.width + 95;
-				}*/
 			}
 		}
 
