@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
 #include <list>
-
 #include <sstream>
 #include "Hud.h"
 

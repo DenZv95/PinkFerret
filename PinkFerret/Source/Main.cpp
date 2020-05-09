@@ -13,14 +13,11 @@ using namespace sf;
 int main()
 {
 	RenderWindow window(sf::VideoMode(1280, 800), "Game");
-	float dX = 0;
-	float dY = 0;
-
+	
 	Clock clock;
-	bool stop = true;
+	
 	Level lvl;
 	lvl.LoadFromFile("Media/Map/level1.tmx");
-
 
 	Texture sBullet_texture;
 	sBullet_texture.loadFromFile("Media/survivor/FullMetalJacket.png");
@@ -42,6 +39,22 @@ int main()
 	Zombie* zombie2 = new Zombie(lvl, player);
 	zombie2->settings(2700, 2700, 190, 180, 1);
 	entities.push_back(zombie2);
+	
+	Zombie* zombie3 = new Zombie(lvl, player);
+	zombie3->settings(1700, 2200, 190, 180, 1);
+	entities.push_back(zombie3);
+	
+	Zombie* zombie4 = new Zombie(lvl, player);
+	zombie4->settings(1700, 2700, 190, 180, 1);
+	entities.push_back(zombie4);
+	
+	Zombie* zombie5 = new Zombie(lvl, player);
+	zombie5->settings(1700, 1600, 190, 180, 1);
+	entities.push_back(zombie5);
+	
+	Zombie* zombie6 = new Zombie(lvl, player);
+	zombie6->settings(2300, 1900, 190, 180, 1);
+	entities.push_back(zombie6);
 
 
 	while (window.isOpen())
