@@ -13,17 +13,17 @@ Player::Player(Level& level)
 	reload_texture.loadFromFile("Media/survivor/handgun/survivor-reload_handgun.png");
 	shoot_texture.loadFromFile("Media/survivor/handgun/survivor-shoot_handgun.png");
 
-	aMove = new Animation(move_texture,					0, 0, 260, 230, 20, 0.007f);
-	aMeleeattack = new Animation(meleeattack_texture,	-10, 0, 300, 240, 15, 0.01f);
-	aReload = new Animation(reload_texture,				3, 0, 260, 230, 15, 0.011f);
-	aShoot = new Animation(shoot_texture,				0, 0, 260, 230, 3, 0.009f);
+	aMove = new Animation(move_texture, 0, 0, 260, 230, 20, 0.007f);
+	aMeleeattack = new Animation(meleeattack_texture, -10, 0, 300, 240, 15, 0.01f);
+	aReload = new Animation(reload_texture, 3, 0, 260, 230, 15, 0.011f);
+	aShoot = new Animation(shoot_texture, 0, 0, 260, 230, 3, 0.009f);
 
 	sprite.setOrigin(260 / 2, 230 / 2);
 	amimationFinish = true;
 
 	font.loadFromFile("Media/CyrilicOld.ttf");
 
-
+	hud = new Hud();
 
 }
 
@@ -36,7 +36,7 @@ void Player::draw(RenderWindow& window, float time)
 
 	Vector2i pixelPos = Mouse::getPosition(window);
 	Vector2f positionMouse = window.mapPixelToCoords(pixelPos);
-	
+
 	switch (state)
 	{
 	case move:
@@ -62,8 +62,8 @@ void Player::draw(RenderWindow& window, float time)
 			amimationFinish = true;
 			ammo = 7;
 		}
-		
-		sprite = aReload -> sprite;
+
+		sprite = aReload->sprite;
 		break;
 	case meleeattack:
 		amimationFinish = false;
@@ -86,10 +86,10 @@ void Player::draw(RenderWindow& window, float time)
 	if (amimationFinish) {
 		state = idle;
 	}
-	if (tytyry) 
+	if (tytyry)
 	{
 		Text text("", font, 30);
-		text.setString("Тутуру!");
+		text.setString("“утуру!");
 		text.setStyle(sf::Text::Bold | sf::Text::Underlined);
 
 		text.setPosition(view.getCenter().x, view.getCenter().y);
@@ -97,23 +97,16 @@ void Player::draw(RenderWindow& window, float time)
 		window.draw(text);
 	}
 
-	Text textAmmo("", font, 50);
-	std::ostringstream playerScoreString;
-	Vector2u pos = window.getSize();
-	playerScoreString << ammo;
-	textAmmo.setString( playerScoreString.str() );
-	textAmmo.setPosition(view.getCenter().x + (pos.x / 2) - 40, view.getCenter().y + (pos.y / 2) - 60);
-	textAmmo.setStyle(sf::Text::Bold);
-	window.draw(textAmmo);
 
+	hud->draw(window, life, ammo, view.getCenter().x, view.getCenter().y);
 	view.setCenter(x + 100, y);
 	window.setView(view);
 	window.draw(sprite);
 }
 
-void Player::Meleeattack(std::list<Entity*> &entities)
+void Player::Meleeattack(std::list<Entity*>& entities)
 {
-	if (amimationFinish) 
+	if (amimationFinish)
 	{
 		state = meleeattack;
 		for (auto a : entities)
@@ -125,7 +118,7 @@ void Player::Meleeattack(std::list<Entity*> &entities)
 					{
 						a->damage();
 					}
-				}
+			}
 		}
 	}
 }
@@ -154,9 +147,9 @@ void Player::Reload()
 	}
 }
 
-void Player::Shoot(std::list<Entity*>& entities , Animation &sBullet, Level &lvl)
+void Player::Shoot(std::list<Entity*>& entities, Animation& sBullet, Level& lvl)
 {
-	if (amimationFinish) 
+	if (amimationFinish)
 	{
 		if (ammo > 0)
 		{
@@ -171,7 +164,7 @@ void Player::Shoot(std::list<Entity*>& entities , Animation &sBullet, Level &lvl
 void Player::checkCollisionWithMap(float Dx, float Dy)
 {
 
-	for (int i = 0; i < obj.size(); i++) 
+	for (int i = 0; i < obj.size(); i++)
 	{
 
 		if (getRect().intersects(obj[i].rect))

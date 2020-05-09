@@ -57,6 +57,9 @@
     <ClCompile Include="Objects.cpp">
       <Filter>Файлы ресурсов\TiledMapLoader</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Hud.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Player.h">
@@ -84,6 +87,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Source\Zombie.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Hud.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

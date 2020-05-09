@@ -4,6 +4,7 @@
 #include <list>
 
 #include <sstream>
+#include "Hud.h"
 
 using namespace sf;
 class Player : public Entity
@@ -19,7 +20,7 @@ public:
 	int state = 0;
 private:
 	View view;
-	
+	Hud* hud;
 	enum State
 	{
 		idle,
