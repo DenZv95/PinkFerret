@@ -19,9 +19,6 @@
     <Filter Include="Файлы ресурсов\TiledMapLoader">
       <UniqueIdentifier>{63faba83-09b2-441b-8729-d3fb771c6072}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\PlayerState">
-      <UniqueIdentifier>{d35df206-eacf-4e11-bffc-25ae6b590736}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -63,15 +60,6 @@
     <ClCompile Include="Source\Hud.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayerState\MovePlayerState.cpp">
-      <Filter>Исходные файлы\PlayerState</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PlayerState\PlayerState.cpp">
-      <Filter>Исходные файлы\PlayerState</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PlayerState\MeleeattackPlayerState.cpp">
-      <Filter>Исходные файлы\PlayerState</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Player.h">
@@ -103,15 +91,6 @@
     </ClInclude>
     <ClInclude Include="Source\Hud.h">
       <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayerState\MovePlayerState.h">
-      <Filter>Исходные файлы\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayerState\PlayerState.h">
-      <Filter>Исходные файлы\PlayerState</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayerState\MeleeattackPlayerState.h">
-      <Filter>Исходные файлы\PlayerState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
