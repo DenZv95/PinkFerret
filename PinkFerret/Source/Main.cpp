@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Menu.h"
 
 using namespace sf;
 
-void menu(RenderWindow & window) {
+/*void menu(RenderWindow & window) {
 	Texture menuTexture1, menuTexture2, menuTexture3, aboutTexture, menuBackground;
 	menuTexture1.loadFromFile("Media/New Game.png");
 	menuTexture2.loadFromFile("Media/Option.png");
@@ -45,14 +47,12 @@ void menu(RenderWindow & window) {
 		window.display();
 	}
 	////////////////////////////////////////////////////
-}
+}*/
 
 bool startGame() {
-sf::RenderWindow window(sf::VideoMode(640, 480), "Pink Ferret");
-	menu(window);
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-
+	sf::RenderWindow window(sf::VideoMode(640, 480), "Pink Ferret");
+	Menu menu(window.getSize().x, window.getSize().y);
+	
 	bool isFullsceen = false;
 
 	while (window.isOpen())
@@ -60,24 +60,54 @@ sf::RenderWindow window(sf::VideoMode(640, 480), "Pink Ferret");
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == Event::KeyReleased){
+			if (event.type == Event::MouseButtonPressed)
+			{
+
+			}
+			if (event.type == Event::KeyReleased)
+			{
 				switch (event.key.code)
 				{
+
+				case sf::Keyboard::Up:
+					menu.MoveUp();
+					break;
+
+				case sf::Keyboard::Down:
+					menu.MoveDown();
+					break;
+		
+				case sf::Keyboard::Return:
+					switch (menu.GetPressedItem())
+					{
+					case 0:
+						std::cout << "Play button has been pressed" << std::endl;
+						break;
+					case 1:
+						std::cout << "Option button has been pressed" << std::endl;
+						break;
+					case 2:
+						window.close();
+						break;
+					}
+					break;
+
 				case Keyboard::Num5:
 					if (false == isFullsceen)
 					{
-						window.create(sf::VideoMode(640, 480), "Pink Ferret", Style::Default);
+						window.create(VideoMode(640, 480), "Pink Ferret", Style::Default);
 						isFullsceen = true;
 					}
 					else
 					{
-						window.create(sf::VideoMode(640, 480), "Pink Ferret", Style::Fullscreen);
+						window.create(VideoMode(640, 480), "Pink Ferret", Style::Fullscreen);
 						isFullsceen = false;
 					}
 					break;
 				}
 			}
-			if (event.type == sf::Event::Closed) {
+			if (event.type == Event::Closed) 
+			{
 				window.close();
 			}
 		}
@@ -86,7 +116,7 @@ sf::RenderWindow window(sf::VideoMode(640, 480), "Pink Ferret");
 		if (Keyboard::isKeyPressed(Keyboard::Escape)) { return false; }//если эскейп, то выходим из игры
 
 		window.clear();
-		window.draw(shape);
+		menu.draw(window);
 		window.display();
 	}
 }
