@@ -72,8 +72,8 @@ int main()
 				window.close();
 		}
 
-
-
+		player->handleInput(event, time);
+		/*
 		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
 			player->Move(-0.12f, 0.f, time);
 		}
@@ -103,8 +103,7 @@ int main()
 		if (Keyboard::isKeyPressed(Keyboard::R)) {
 			player->Reload();
 		}
-	
-
+		*/
 		for (auto a : entities)
 		{
 			if (a -> life)

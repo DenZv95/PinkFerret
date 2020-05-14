@@ -4,8 +4,44 @@
 #include <list>
 #include <sstream>
 #include "Hud.h"
-
+#include "PlayerState/PlayerState.h"
+//#include "PlayerState/PlayerState.h"
+//#include "PlayerState/MovePlayerState.h"
+//#include "PlayerState/MeleeattackPlayerState.h"
 using namespace sf;
+//class MovePlayerState;
+//class MeleeattackPlayerState;
+class Player : public Entity
+{
+public:
+	//static MovePlayerState move;
+	//static MeleeattackPlayerState meleeattack;
+	Player(Level& level);
+	void update(float time) override;
+	void draw(RenderWindow& app, float time) override;
+	void Move(float dX, float dY, float time);
+	virtual void handleInput(Event event, float time);
+private:
+	void checkCollisionWithMap(float Dx, float Dy) override;
+	
+	PlayerState* state_;
+
+	View view;
+	Sprite sprite;
+
+	/*(
+
+	Texture meleeattack_texture;
+	Texture reload_texture;
+	Texture shoot_texture;
+
+	Animation* aMove;
+	Animation* aMeleeattack;
+	Animation* aReload;
+	Animation* aShoot;
+	*/
+};
+/*
 class Player : public Entity
 {
 public:
@@ -43,3 +79,4 @@ private:
 	Font font;
 
 };
+*/

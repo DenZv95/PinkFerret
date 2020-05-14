@@ -1,7 +1,98 @@
 #include "Player.h"
 #include "Bullet.h"
+#include "PlayerState/MovePlayerState.h"
+//#include "PlayerState/MeleeattackPlayerState.h"
 
+Player::Player(Level& level)
+{
+	obj = level.GetAllObjects();
+	life = 200;
+	name = "Player";
+	view.reset(sf::FloatRect(x, y, 1280, 800));
+	sprite.setOrigin(260 / 2, 230 / 2);
+	//move = MovePlayerState();
+	//meleeattack = MeleeattackPlayerState();
+	//PlayerState::move;
+	state_ = new MovePlayerState();
+	//state_ = &PlayerState::move;;
+	//PlayerState::move = MovePlayerState();
+	//state_ = new MeleeattackPlayerState();
+	//state_ = &PlayerState::move;
+	//state_ = &PlayerState::move;
+	int a = 1;
+}
 
+void Player::update(float time)
+{
+	
+}
+
+void Player::draw(RenderWindow& window, float time)
+{
+	Vector2i pixelPos = Mouse::getPosition(window);
+	Vector2f positionMouse = window.mapPixelToCoords(pixelPos);
+	sprite = state_->draw(time);
+	
+	sprite.setPosition(x, y);
+	angle = (atan2(positionMouse.y - y, positionMouse.x - x)) * 180 / 3.14159265;
+	sprite.setRotation(angle);
+	window.draw(sprite);
+	view.setCenter(x + 100, y);
+	window.setView(view);
+}
+
+void Player::handleInput(Event event, float time)
+{
+	PlayerState* state = state_->handleInput(*this, event, time);
+	if (state != nullptr)
+	{
+		delete state_;
+		state_ = state;
+	}
+	//voidreturn nullptr;
+}
+
+void Player::checkCollisionWithMap(float Dx, float Dy)
+{
+	for (int i = 0; i < obj.size(); i++)
+	{
+
+		if (getRect().intersects(obj[i].rect))
+		{
+			if (obj[i].name == "TheWall")
+			{
+
+				if (Dy > 0) {
+					y = obj[i].rect.top - 90;
+				}
+				if (Dy < 0) {
+					y = obj[i].rect.top + obj[i].rect.height + 90;
+				}
+
+				if (Dx > 0) {
+					x = obj[i].rect.left - 95;
+				}
+
+				if (Dx < 0) {
+					x = obj[i].rect.left + obj[i].rect.width + 95;
+				}
+			}
+		}
+	}
+}
+
+void Player::Move(float dX, float dY, float time)
+{
+
+	x += dX * time;
+	y += dY * time;
+	checkCollisionWithMap(dX, dY);
+	dX = 0;
+	dY = 0;
+	view.setCenter(x + 100, y);
+}
+
+/*
 Player::Player(Level& level)
 {
 	obj = level.GetAllObjects();
@@ -196,3 +287,4 @@ void Player::checkCollisionWithMap(float Dx, float Dy)
 	}
 
 }
+*/
