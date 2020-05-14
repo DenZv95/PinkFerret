@@ -18,6 +18,7 @@ public:
 private:
 	int selectedItemIndex;
 	Font font;
+	Texture aboutTexture, menuBackground;
 	Text menu[MAX_NUMBER_OF_ITEMS];
 };
 
