@@ -72,6 +72,9 @@
     <ClCompile Include="Source\PlayerState\MeleeattackPlayerState.cpp">
       <Filter>Исходные файлы\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayerState\StaticState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Player.h">
@@ -111,6 +114,9 @@
       <Filter>Исходные файлы\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerState\MeleeattackPlayerState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\StaticState.h">
       <Filter>Исходные файлы\PlayerState</Filter>
     </ClInclude>
   </ItemGroup>

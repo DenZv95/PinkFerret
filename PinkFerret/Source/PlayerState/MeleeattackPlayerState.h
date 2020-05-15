@@ -1,16 +1,16 @@
-//#include "PlayerState.h"
+#pragma once
 #include "../Animation.h"
-#include "../Player.h"
-//class Player;
+#include <PlayerState.h>
 
-class	MeleeattackPlayerState : public PlayerState
+using namespace sf;
+class MeleeattackPlayerState : public PlayerState
 {
 public:
 	MeleeattackPlayerState();
-	~MeleeattackPlayerState();
-	virtual Sprite draw(float time);
-	virtual PlayerState *handleInput(Player& player, Event event, float time);
+	virtual ~MeleeattackPlayerState();
+	virtual sf::Sprite draw(float time);
+	virtual PlayerState* handleInput(Player& player, sf::Event event, float time);
 private:
-	Texture meleeattack_texture;
+	sf::Texture meleeattack_texture;
 	Animation* aMeleeattack;
 };

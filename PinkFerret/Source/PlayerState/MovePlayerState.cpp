@@ -1,5 +1,5 @@
 #include "MovePlayerState.h"
-#include "MeleeattackPlayerState.h"
+#include "../Player.h"
 
 MovePlayerState::MovePlayerState()
 {
@@ -12,13 +12,13 @@ MovePlayerState::~MovePlayerState()
 {
 }
 /**/
-Sprite MovePlayerState::draw(float time)
+sf::Sprite MovePlayerState::draw(float time)
 {
 	aMove->update(time);
 	return aMove->sprite;
 }
 
-PlayerState  *MovePlayerState::handleInput(Player& player, Event event, float time)
+PlayerState* MovePlayerState::handleInput(Player& player, sf::Event event, float time)
 {
 	
 	if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
@@ -45,7 +45,7 @@ PlayerState  *MovePlayerState::handleInput(Player& player, Event event, float ti
 	if (Mouse::isButtonPressed(Mouse::Right)) {
 		//player->Meleeattack(entities);
 		//return &PlayerState::meleeattack;
-		return new MeleeattackPlayerState();
+		return player.States.getMeleeattackState();
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::R)) {

@@ -3,14 +3,11 @@
 #include "Entity.h"
 #include <list>
 #include <sstream>
-#include "Hud.h"
-#include "PlayerState/PlayerState.h"
-//#include "PlayerState/PlayerState.h"
-//#include "PlayerState/MovePlayerState.h"
-//#include "PlayerState/MeleeattackPlayerState.h"
+#include <PlayerState.h>
+#include <StaticState.h>
+
 using namespace sf;
-//class MovePlayerState;
-//class MeleeattackPlayerState;
+
 class Player : public Entity
 {
 public:
@@ -21,6 +18,7 @@ public:
 	void draw(RenderWindow& app, float time) override;
 	void Move(float dX, float dY, float time);
 	virtual void handleInput(Event event, float time);
+	StaticState States;
 private:
 	void checkCollisionWithMap(float Dx, float Dy) override;
 	

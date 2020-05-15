@@ -1,15 +1,16 @@
-//#include "PlayerState.h"
+#pragma once
 #include "../Animation.h"
-#include "../Player.h"
+#include <PlayerState.h>
 
-class	MovePlayerState : public PlayerState
+using namespace sf;
+class MovePlayerState : public PlayerState
 {
 public:
 	MovePlayerState();
-	~MovePlayerState();
-	virtual Sprite draw(float time);
-	virtual PlayerState *handleInput(Player& player, Event event, float time);
+	virtual ~MovePlayerState();
+	virtual sf::Sprite draw(float time);
+	virtual PlayerState* handleInput(Player& player, sf::Event event, float time);
 private:
-	Texture move_texture;
+	sf::Texture move_texture;
 	Animation* aMove;
 };

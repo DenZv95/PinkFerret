@@ -1,7 +1,5 @@
 #include "Player.h"
 #include "Bullet.h"
-#include "PlayerState/MovePlayerState.h"
-//#include "PlayerState/MeleeattackPlayerState.h"
 
 Player::Player(Level& level)
 {
@@ -10,15 +8,10 @@ Player::Player(Level& level)
 	name = "Player";
 	view.reset(sf::FloatRect(x, y, 1280, 800));
 	sprite.setOrigin(260 / 2, 230 / 2);
-	//move = MovePlayerState();
-	//meleeattack = MeleeattackPlayerState();
-	//PlayerState::move;
-	state_ = new MovePlayerState();
-	//state_ = &PlayerState::move;;
-	//PlayerState::move = MovePlayerState();
-	//state_ = new MeleeattackPlayerState();
-	//state_ = &PlayerState::move;
-	//state_ = &PlayerState::move;
+	States = StaticState();
+
+	state_ = States.getMoveState();
+	//state_ = new MovePlayerState();
 	int a = 1;
 }
 
@@ -46,10 +39,10 @@ void Player::handleInput(Event event, float time)
 	PlayerState* state = state_->handleInput(*this, event, time);
 	if (state != nullptr)
 	{
-		delete state_;
+		//delete state_;
 		state_ = state;
 	}
-	//voidreturn nullptr;
+	//return nullptr;
 }
 
 void Player::checkCollisionWithMap(float Dx, float Dy)
