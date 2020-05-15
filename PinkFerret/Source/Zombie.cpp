@@ -19,7 +19,7 @@ void Zombie::update(float time)
 		state_ = state;
 	}
 	//dx = cos(angle * 0.017453f) * 0.1 * time;
- //   dy = sin(angle * 0.017453f) * 0.1 * time;
+    //dy = sin(angle * 0.017453f) * 0.1 * time;
 	//if (getRect().intersects(pl->getRect()))
 	//{
 	//	if (state != meleeattack) {
@@ -37,12 +37,11 @@ void Zombie::update(float time)
 
 void Zombie::draw(RenderWindow& window, float time)
 {
-
-	angle = (atan2(pl->y - y, pl->x - x)) * 180 / 3.14159265;
+	
 	sprite = state_->draw(time);
-	sprite->setRotation(angle);
 	sprite->setPosition(x, y);
 	window.draw(*sprite);
+
 	/*switch (state)
 	{
 	case move:

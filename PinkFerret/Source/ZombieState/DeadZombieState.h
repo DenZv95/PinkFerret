@@ -13,4 +13,6 @@ public:
 private:
 	sf::Texture deadTexture;
 	Animation* aDead;
+	float angle;
+	bool life = true;
 };

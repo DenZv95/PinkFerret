@@ -47,6 +47,7 @@ PlayerState* MovePlayerState::handleInput(Player& player, sf::Event event, float
 	}
 
 	if (Mouse::isButtonPressed(Mouse::Right)) {
+		player.Meleeattack();
 		return player.States.getMeleeattackState();
 	}
 

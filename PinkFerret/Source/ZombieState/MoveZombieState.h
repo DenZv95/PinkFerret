@@ -13,4 +13,5 @@ public:
 private:
 	Texture move_texture;
 	Animation* aMove;
+	float angle = 0,dx,dy;
 };

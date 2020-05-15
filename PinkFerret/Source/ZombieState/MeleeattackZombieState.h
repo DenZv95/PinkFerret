@@ -13,4 +13,5 @@ public:
 private:
 	sf::Texture texture;
 	Animation* animation;
+	float angle = 0;
 };
