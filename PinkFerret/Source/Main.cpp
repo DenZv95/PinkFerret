@@ -39,22 +39,6 @@ bool startGame() {
 	music.play();
 	bool musicOn = true;
 
-	SoundBuffer shootBuffer;
-	shootBuffer.loadFromFile("Media/Sound/shoot.wav");
-	Sound shoot(shootBuffer);
-
-	SoundBuffer reloadBuffer;
-	reloadBuffer.loadFromFile("Media/Sound/reload.wav");
-	Sound reload(reloadBuffer);
-
-	SoundBuffer meleeattackBuffer;
-	meleeattackBuffer.loadFromFile("Media/Sound/meleeattack.wav");
-	Sound meleeattack(meleeattackBuffer);
-	
-	SoundBuffer moveBuffer;
-	moveBuffer.loadFromFile("Media/Sound/move.wav");
-	Sound move(moveBuffer);
-
 	Player* player = new Player(lvl);
 	//player->settings(300, 300, 190, 180, 1);
 	//player->settings(800, 300, 190, 180, 1);

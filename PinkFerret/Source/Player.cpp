@@ -2,7 +2,13 @@
 
 
 Player::Player(Level& level)
-{
+{	
+	shootBuffer.loadFromFile("Media/Sound/shoot.wav");
+	shoot = new Sound(shootBuffer);
+
+	moveBuffer.loadFromFile("Media/Sound/move.wav");
+	move = new Sound(moveBuffer);
+	
 	obj = level.GetAllObjects();
 	bullet_texture.loadFromFile("Media/survivor/FullMetalJacket.png");
 	aBullet = Animation(bullet_texture, 0, 0, 5, 4, 1, 0.8);
@@ -76,7 +82,7 @@ void Player::checkCollisionWithMap(float Dx, float Dy)
 
 void Player::Move(float dX, float dY, float time)
 {
-
+	move->play();
 	x += dX * time;
 	y += dY * time;
 	checkCollisionWithMap(dX, dY);
@@ -107,6 +113,7 @@ void Player::Shoot()
 {
 		if (ammo > 0)
 		{
+			shoot->play();
 			Bullet* b = new Bullet(aBullet, obj);
 			b->settings(x + (112 * cos(angle * 0.017453f) - 48 * sin(angle * 0.017453f)), y + (112 * sin(angle * 0.017453f) + 48 * cos(angle * 0.017453f)), 4, 5, angle);
 			bullets.push_back(b);
