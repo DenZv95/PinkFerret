@@ -111,7 +111,7 @@ void Player::Meleeattack()
 
 void Player::Shoot()
 {
-		if (ammo > 0)
+		if (ammo >= 0)
 		{
 			shoot->play();
 			Bullet* b = new Bullet(aBullet, obj);

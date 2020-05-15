@@ -21,6 +21,8 @@ public:
 	StaticState States;
 	int ammo = 2;
 	std::list<Entity*> bullets;
+	std::list<Entity*> entitys;
+	void Meleeattack();
 	void Shoot();
 private:
 	void checkCollisionWithMap(float Dx, float Dy) override;

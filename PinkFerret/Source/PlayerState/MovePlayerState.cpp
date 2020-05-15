@@ -53,12 +53,14 @@ PlayerState* MovePlayerState::handleInput(Player& player, sf::Event event, float
 	}
 
 	if (Mouse::isButtonPressed(Mouse::Right)) {
+		player.Meleeattack();
 		meleeattack->play();
 		return player.States.getMeleeattackState();
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::R)) {
 		if (player.ammo < 7){
+			player.ammo = 7;
 			reload->play();
 			return player.States.getReloadState();
 		}
