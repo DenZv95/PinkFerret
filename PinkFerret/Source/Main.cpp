@@ -10,7 +10,7 @@
 #include "Bullet.h"
 #include "Zombie.h"
 #include "Menu.h"
-
+#include "Hud.h"
 
 using namespace sf;
 
@@ -32,13 +32,11 @@ bool startGame() {
 	Animation sBullet(sBullet_texture, 0, 0, 5, 4, 1, 0.8);
 	std::list<Entity*> entities;
 	float time;
-
-	SoundBuffer shootBuffer;//создаём буфер для звука
-	shootBuffer.loadFromFile("Media/shoot.wav");//загружаем в него звук
-	Sound shooting(shootBuffer);//создаем звук и загружаем в него звук из буфера
-
+	
 	Music music;//создаем объект музыки
-	music.openFromFile("Media/sailor.ogg");//загружаем файл
+	music.openFromFile("Media/Sound/Music/game.ogg");//загружаем файл
+	music.setVolume(25);
+	music.play();
 	bool musicOn = true;
 
 	Player* player = new Player(lvl);
@@ -100,27 +98,22 @@ bool startGame() {
 					break;
 				
 				case Keyboard::F2:
-					if (false == musicOn)
-					{
-						music.play();//воспроизводим музыку
-						musicOn = true;
-					}
-					else
+					if (true == musicOn)
 					{
 						music.pause();//воспроизводим музыку
 						musicOn = false;
 					}
+					else
+					{
+						music.play();//воспроизводим музыку
+						musicOn = true;
+					}
 					break;
-					/*case Keyboard::Escape:
-						//menu.draw(window);
-						window.close();
-						break;*/
 				}
 			}
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-
 
 		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
 			player->Move(-0.12f, 0.f, time);
@@ -142,7 +135,6 @@ bool startGame() {
 
 		if (Mouse::isButtonPressed(Mouse::Left)) {
 			player->Shoot(entities, sBullet, lvl);
-
 		}
 
 		if (Mouse::isButtonPressed(Mouse::Right)) {

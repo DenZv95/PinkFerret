@@ -1,3 +1,4 @@
+#include <SFML/Audio.hpp>
 #include "Menu.h"
 #include <iostream>
 
@@ -7,7 +8,7 @@ Menu::Menu(float width, float height)
 {
 	if (!font.loadFromFile("Media/ZXSpectrum.ttf")) {}
 	if (!menuBackground.loadFromFile("Media/background.png")) {}
-
+	
 	menu[0].setFont(font);
 	menu[0].setCharacterSize(80);
 	//menu[0].setFillColor(Color::Red);
@@ -36,6 +37,15 @@ Menu::~Menu()
 
 void Menu::draw(RenderWindow& window)
 {
+	Music music;//создаем объект музыки
+	music.openFromFile("Media/Sound/Music/menu.ogg");//загружаем файл
+	music.setVolume(30);
+	music.play();
+
+	SoundBuffer shootBuffer;//создаём буфер для звука
+	shootBuffer.loadFromFile("Media/Sound/shoot.wav");//загружаем в него звук
+	Sound shooting(shootBuffer);//создаем звук и загружаем в него звук из буфера
+
 	TextureSize = menuBackground.getSize();
 	WindowSize = window.getSize();
 
