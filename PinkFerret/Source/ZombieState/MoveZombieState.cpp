@@ -35,9 +35,9 @@ ZombieState* MoveZombieState::Update(Zombie& zombie, Player& player, float time)
 {
 	if (move->getStatus() == move->Stopped)	move->play();
 	angle = (atan2(player.y - zombie.y, player.x - zombie.x)) * 180 / 3.14159265;
-	dx = cos(angle * 0.017453f) * 0.1 * time;
-	dy = sin(angle * 0.017453f) * 0.1 * time;
-	
+	zombie.dx = cos(angle * 0.017453f) * 0.1 * time;
+	zombie.dy = sin(angle * 0.017453f) * 0.1 * time;
+	zombie.checkCollisionWithMap(dx, dy);
 	if (zombie.getRect().intersects(player.getRect()))
 	{
 		attack->play();
@@ -52,8 +52,8 @@ ZombieState* MoveZombieState::Update(Zombie& zombie, Player& player, float time)
 		death->play();
 		return zombie.States.getDeadState();
 	}
-	zombie.x += dx;
-	zombie.y += dy;
+	zombie.x += zombie.dx;
+	zombie.y += zombie.dy;
 
 	return nullptr;
 }
