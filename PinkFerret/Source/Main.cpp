@@ -29,32 +29,33 @@ int main()
 	Player* player = new Player(lvl);
 	//player->settings(300, 300, 190, 180, 1);
 	//player->settings(800, 300, 190, 180, 1);
-	player->settings(800, 2200, 190, 180, 1);
+	//player->settings(800, 2200, 190, 180, 1);
+	player->settings(2400, 2300, 190, 180, 1);
 	entities.push_back(player);
 
 	Zombie* zombie = new Zombie(lvl, player);
 	zombie->settings(2700, 2300, 190, 180, 1);
 	entities.push_back(zombie);
 
-	Zombie* zombie2 = new Zombie(lvl, player);
-	zombie2->settings(2700, 2700, 190, 180, 1);
-	entities.push_back(zombie2);
-	
-	Zombie* zombie3 = new Zombie(lvl, player);
-	zombie3->settings(1700, 2200, 190, 180, 1);
-	entities.push_back(zombie3);
-	
-	Zombie* zombie4 = new Zombie(lvl, player);
-	zombie4->settings(1700, 2700, 190, 180, 1);
-	entities.push_back(zombie4);
-	
-	Zombie* zombie5 = new Zombie(lvl, player);
-	zombie5->settings(1700, 1600, 190, 180, 1);
-	entities.push_back(zombie5);
-	
-	Zombie* zombie6 = new Zombie(lvl, player);
-	zombie6->settings(2300, 1900, 190, 180, 1);
-	entities.push_back(zombie6);
+	//Zombie* zombie2 = new Zombie(lvl, player);
+	//zombie2->settings(2700, 2700, 190, 180, 1);
+	//entities.push_back(zombie2);
+	//
+	//Zombie* zombie3 = new Zombie(lvl, player);
+	//zombie3->settings(1700, 2200, 190, 180, 1);
+	//entities.push_back(zombie3);
+	//
+	//Zombie* zombie4 = new Zombie(lvl, player);
+	//zombie4->settings(1700, 2700, 190, 180, 1);
+	//entities.push_back(zombie4);
+	//
+	//Zombie* zombie5 = new Zombie(lvl, player);
+	//zombie5->settings(1700, 1600, 190, 180, 1);
+	//entities.push_back(zombie5);
+	//
+	//Zombie* zombie6 = new Zombie(lvl, player);
+	//zombie6->settings(2300, 1900, 190, 180, 1);
+	//entities.push_back(zombie6);
 
 
 	while (window.isOpen())
@@ -72,8 +73,8 @@ int main()
 				window.close();
 		}
 
-
-
+		player->handleInput(event, time);
+		/*
 		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
 			player->Move(-0.12f, 0.f, time);
 		}
@@ -103,15 +104,14 @@ int main()
 		if (Keyboard::isKeyPressed(Keyboard::R)) {
 			player->Reload();
 		}
-	
-
-		for (auto a : entities)
+		*/
+		for (auto a : player->bullets)
 		{
 			if (a -> life)
 			{
 				for (auto b : entities)
 				{
-					if (a->name == "Zombie" && b->name == "Bullet")
+					if (b->name == "Zombie" && a->name == "Bullet")
 						if (a->getRect().intersects(b->getRect()))
 						{
 							a->damage();
@@ -126,23 +126,43 @@ int main()
 			Entity* e = *i;
 
 			e->update(time);
+
+			//if (e->life == false) 
+			//{ 
+			//	i = entities.erase(i); 
+			//	if (e -> name != "Player")
+			//		delete e; 
+			//}
+			//else 
+			i++;
+		}
+
+
+		for (auto i = player->bullets.begin(); i != player->bullets.end();)
+		{
+			Entity* e = *i;
+
+			e->update(time);
 			//e->anim.update();
 
-			if (e->life == false) 
-			{ 
-				i = entities.erase(i); 
-				if (e -> name != "Player")
-					delete e; 
+			if (e->life == false)
+			{
+				i = player->bullets.erase(i);
+				delete e;
 			}
 			else i++;
 		}
-
 
 		window.clear();
 
 		window.clear(Color(77, 83, 140));
 		lvl.Draw(window);
-		for (auto i : entities) i->draw(window, time);
+		for (auto i : entities) 
+			i->draw(window, time);
+
+		for (auto i : player->bullets) 
+			i->draw(window, time);
+
 		window.display();
 
 	}
