@@ -35,7 +35,7 @@ bool startGame() {
 	
 	Music music;
 	music.openFromFile("Media/Sound/Music/game.ogg");
-	music.setVolume(25);
+	music.setVolume(10);
 	music.play();
 	bool musicOn = true;
 

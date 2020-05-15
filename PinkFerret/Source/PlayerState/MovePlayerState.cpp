@@ -9,9 +9,11 @@ MovePlayerState::MovePlayerState()
 
 	meleeattackBuffer.loadFromFile("Media/Sound/meleeattack.wav");
 	meleeattack = new Sound(meleeattackBuffer);
-	
+	meleeattack->setVolume(10);
+
 	reloadBuffer.loadFromFile("Media/Sound/reload.wav");
 	reload = new Sound(reloadBuffer);
+	reload->setVolume(50);
 }
 
 MovePlayerState::~MovePlayerState()

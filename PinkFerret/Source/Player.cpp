@@ -5,7 +5,7 @@ Player::Player(Level& level)
 {	
 	shootBuffer.loadFromFile("Media/Sound/shoot.wav");
 	shoot = new Sound(shootBuffer);
-
+	shoot->setVolume(12);
 	moveBuffer.loadFromFile("Media/Sound/move.wav");
 	move = new Sound(moveBuffer);
 	
@@ -82,7 +82,9 @@ void Player::checkCollisionWithMap(float Dx, float Dy)
 
 void Player::Move(float dX, float dY, float time)
 {
-	move->play();
+	//move->play();
+	if (move->Playing)
+		move->stop();
 	x += dX * time;
 	y += dY * time;
 	checkCollisionWithMap(dX, dY);
