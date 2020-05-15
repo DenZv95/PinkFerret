@@ -19,6 +19,9 @@ private:
 	int selectedItemIndex;
 	Font font;
 	Texture aboutTexture, menuBackground;
+	Sprite menuBg;
+	Vector2u TextureSize;  //Added to store texture size.
+	Vector2u WindowSize;   //Added to store window size.;
 	Text menu[MAX_NUMBER_OF_ITEMS];
 };
 
