@@ -6,6 +6,12 @@ MovePlayerState::MovePlayerState()
 	//PlayerState::move = MovePlayerState();
 	move_texture.loadFromFile("Media/survivor/handgun/survivor-move_handgun.png");
 	aMove = new Animation(move_texture, 0, 0, 260, 230, 20, 0.007f);
+
+	meleeattackBuffer.loadFromFile("Media/Sound/meleeattack.wav");
+	meleeattack = new Sound(meleeattackBuffer);
+	
+	reloadBuffer.loadFromFile("Media/Sound/reload.wav");
+	reload = new Sound(reloadBuffer);
 }
 
 MovePlayerState::~MovePlayerState()
@@ -47,11 +53,13 @@ PlayerState* MovePlayerState::handleInput(Player& player, sf::Event event, float
 	}
 
 	if (Mouse::isButtonPressed(Mouse::Right)) {
+		meleeattack->play();
 		return player.States.getMeleeattackState();
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::R)) {
 		if (player.ammo < 7){
+			reload->play();
 			return player.States.getReloadState();
 		}
 	}

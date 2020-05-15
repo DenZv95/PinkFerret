@@ -1,11 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Entity.h"
 #include <list>
 #include <sstream>
 #include "Bullet.h"
 #include <PlayerState.h>
-#include <StaticState.h>
+#include <StaticState.h>SoundBuffer shootBuffer;
 
 using namespace sf;
 
@@ -28,6 +29,9 @@ private:
 	Sprite sprite;
 	Texture bullet_texture;
 	Animation aBullet;
+	SoundBuffer shootBuffer, reloadBuffer, meleeattackBuffer, moveBuffer;
+	Sound* shoot;
+	Sound* move;
 	/*(
 
 	Texture meleeattack_texture;

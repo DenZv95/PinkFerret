@@ -1,6 +1,7 @@
 #pragma once
 #include "../Animation.h"
 #include <PlayerState.h>
+#include <SFML/Audio.hpp>
 
 using namespace sf;
 class MovePlayerState : public PlayerState
@@ -13,4 +14,7 @@ public:
 private:
 	sf::Texture move_texture;
 	Animation* aMove;
+	SoundBuffer reloadBuffer, meleeattackBuffer;
+	Sound* meleeattack;
+	Sound* reload;
 };
