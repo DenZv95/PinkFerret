@@ -82,9 +82,9 @@ void Player::checkCollisionWithMap(float Dx, float Dy)
 
 void Player::Move(float dX, float dY, float time)
 {
-	//move->play();
-	if (move->Playing)
-		move->stop();
+	
+	if (move->getStatus() == move->Stopped)
+		move->play();
 	x += dX * time;
 	y += dY * time;
 	checkCollisionWithMap(dX, dY);
