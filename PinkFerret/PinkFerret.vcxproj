@@ -152,6 +152,7 @@
     <ClCompile Include="Source\PlayerState\MovePlayerState.cpp" />
     <ClCompile Include="Source\PlayerState\PlayerState.cpp" />
     <ClCompile Include="Source\PlayerState\ReloadPlayerState.cpp" />
+    <ClCompile Include="Source\PlayerState\ShootPlayerState.cpp" />
     <ClCompile Include="Source\PlayerState\StaticState.cpp" />
     <ClCompile Include="Source\TiledMapLoader\level.cpp" />
     <ClCompile Include="Source\TinyXML\tinystr.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Source\PlayerState\MovePlayerState.h" />
     <ClInclude Include="Source\PlayerState\PlayerState.h" />
     <ClInclude Include="Source\PlayerState\ReloadPlayerState.h" />
+    <ClInclude Include="Source\PlayerState\ShootPlayerState.h" />
     <ClInclude Include="Source\PlayerState\StaticState.h" />
     <ClInclude Include="Source\TiledMapLoader\level.h" />
     <ClInclude Include="Source\TiledMapLoader\Objects.h" />

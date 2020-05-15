@@ -1,9 +1,11 @@
 #include "Player.h"
-#include "Bullet.h"
+
 
 Player::Player(Level& level)
 {
 	obj = level.GetAllObjects();
+	bullet_texture.loadFromFile("Media/survivor/FullMetalJacket.png");
+	aBullet = Animation(bullet_texture, 0, 0, 5, 4, 1, 0.8);
 	life = 200;
 	name = "Player";
 	view.reset(sf::FloatRect(x, y, 1280, 800));
@@ -83,6 +85,15 @@ void Player::Move(float dX, float dY, float time)
 	view.setCenter(x + 100, y);
 }
 
+void Player::Shoot()
+{
+		if (ammo > 0)
+		{
+			Bullet* b = new Bullet(aBullet, obj);
+			b->settings(x + (112 * cos(angle * 0.017453f) - 48 * sin(angle * 0.017453f)), y + (112 * sin(angle * 0.017453f) + 48 * cos(angle * 0.017453f)), 4, 5, angle);
+			bullets.push_back(b);
+		}
+}
 
 /*
 Player::Player(Level& level)

@@ -104,13 +104,13 @@ int main()
 			player->Reload();
 		}
 		*/
-		for (auto a : entities)
+		for (auto a : player->bullets)
 		{
 			if (a -> life)
 			{
 				for (auto b : entities)
 				{
-					if (a->name == "Zombie" && b->name == "Bullet")
+					if (b->name == "Zombie" && a->name == "Bullet")
 						if (a->getRect().intersects(b->getRect()))
 						{
 							a->damage();
@@ -125,7 +125,6 @@ int main()
 			Entity* e = *i;
 
 			e->update(time);
-			//e->anim.update();
 
 			if (e->life == false) 
 			{ 
@@ -137,11 +136,28 @@ int main()
 		}
 
 
+		for (auto i = player->bullets.begin(); i != player->bullets.end();)
+		{
+			Entity* e = *i;
+
+			e->update(time);
+			//e->anim.update();
+
+			if (e->life == false)
+			{
+				i = player->bullets.erase(i);
+				delete e;
+			}
+			else i++;
+		}
+
 		window.clear();
 
 		window.clear(Color(77, 83, 140));
 		lvl.Draw(window);
 		for (auto i : entities) i->draw(window, time);
+		for (auto i : player->bullets) i->draw(window, time);
+
 		window.display();
 
 	}

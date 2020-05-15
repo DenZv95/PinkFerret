@@ -1,9 +1,10 @@
 #include "ShootPlayerState.h"
+#include "../Player.h"
 
 ShootPlayerState::ShootPlayerState()
 {
-	shoot_texture.loadFromFile("Media/survivor/handgun/survivor-move_handgun.png");
-	aShoot = new Animation(shoot_texture, 0, 0, 260, 230, 20, 0.007f);
+	shoot_texture.loadFromFile("Media/survivor/handgun/survivor-shoot_handgun.png");
+	aShoot = new Animation(shoot_texture, 0, 0, 260, 230, 3, 0.009f);
 }
 
 ShootPlayerState::~ShootPlayerState()
@@ -36,17 +37,10 @@ PlayerState  *ShootPlayerState::handleInput(Player& player, Event event, float t
 		player.Move(0.f, 0.12f, time);
 	}
 
-
-	if (Mouse::isButtonPressed(Mouse::Left)) {
-		//player->Shoot(entities, sBullet, lvl);
-	}
-
-	if (Mouse::isButtonPressed(Mouse::Right)) {
-		//player->Meleeattack(entities);
-	}
-
-	if (Keyboard::isKeyPressed(Keyboard::R)) {
-		//player->Reload();
+	if (aShoot->isEnd())
+	{
+		//return new MovePlayerState();
+		return player.States.getMoveState();
 	}
 
 	return nullptr;

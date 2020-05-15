@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include <list>
 #include <sstream>
+#include "Bullet.h"
 #include <PlayerState.h>
 #include <StaticState.h>
 
@@ -11,8 +12,6 @@ using namespace sf;
 class Player : public Entity
 {
 public:
-	//static MovePlayerState move;
-	//static MeleeattackPlayerState meleeattack;
 	Player(Level& level);
 	void update(float time) override;
 	void draw(RenderWindow& app, float time) override;
@@ -20,13 +19,15 @@ public:
 	virtual void handleInput(Event event, float time);
 	StaticState States;
 	int ammo = 2;
+	std::list<Entity*> bullets;
+	void Shoot();
 private:
-
 	void checkCollisionWithMap(float Dx, float Dy) override;
 	PlayerState* state_;
 	View view;
 	Sprite sprite;
-
+	Texture bullet_texture;
+	Animation aBullet;
 	/*(
 
 	Texture meleeattack_texture;
@@ -53,15 +54,7 @@ public:
 	int state = 0;
 private:
 	View view;
-	Hud* hud;
-	enum State
-	{
-		idle,
-		move,
-		reload,
-		shoot,
-		meleeattack
-	};
+
 	bool amimationFinish, tytyry = 0;
 	int ammo = 2;
 	void checkCollisionWithMap(float Dx, float Dy) override;

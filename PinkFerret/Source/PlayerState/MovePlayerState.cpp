@@ -39,7 +39,11 @@ PlayerState* MovePlayerState::handleInput(Player& player, sf::Event event, float
 
 
 	if (Mouse::isButtonPressed(Mouse::Left)) {
-		//player->Shoot(entities, sBullet, lvl);
+		if (player.ammo > 0) {
+			player.ammo -= 1;
+			player.Shoot();
+			return player.States.getShootState();
+		}
 	}
 
 	if (Mouse::isButtonPressed(Mouse::Right)) {
