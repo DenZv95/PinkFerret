@@ -9,38 +9,47 @@ Hud::Hud()
 	aAmmo = new Animation(ammo_texture, 0, 0, 40, 40, 1, 1);
 }
 
-void Hud::draw(RenderWindow& window, int HP, int ammo, float X, float Y)
+void Hud::draw(RenderWindow& window, Player& player)
 {
 
 	sizeWindow = window.getSize();
-
-	aHP->sprite.setPosition(X - (sizeWindow.x / 2) + 30, Y - (sizeWindow.y / 2) + 60);
+	aHP->sprite.setPosition(player.x - (sizeWindow.x / 2) + 170, player.y - (sizeWindow.y / 2) + 25);
 	window.draw(aHP->sprite);
 
 	std::ostringstream playerHP;
 	Text textHp("", font, 60);
-	playerHP << HP;
+	playerHP << player.life;
 	textHp.setString(playerHP.str());
-	textHp.setPosition(X - int(sizeWindow.x / 2) + 60, Y - int(sizeWindow.y / 2) + 10);
+	textHp.setPosition(player.x - int(sizeWindow.x / 2) + 200, player.y - int(sizeWindow.y / 2) - 30);
 	textHp.setStyle(sf::Text::Bold);
 	window.draw(textHp);
 
-	aAmmo->sprite.setPosition(X - int(sizeWindow.x / 2) + 30, Y - int(sizeWindow.y / 2) + 120);
+	aAmmo->sprite.setPosition(player.x - int(sizeWindow.x / 2) + 170, player.y - int(sizeWindow.y / 2) + 85);
 	window.draw(aAmmo->sprite);
 
 	std::ostringstream playerAmmo;
-	playerAmmo << ammo;
+	playerAmmo << player.ammo;
 	Text textAmmo("", font, 60);
 	textAmmo.setString(playerAmmo.str());
-	textAmmo.setPosition(X - (sizeWindow.x / 2) + 60, Y - (sizeWindow.y / 2) + 70);
+	textAmmo.setPosition(player.x - (sizeWindow.x / 2) + 200, player.y - (sizeWindow.y / 2) + 35);
 	textAmmo.setStyle(sf::Text::Bold);
 	window.draw(textAmmo);
 
-	Text text("", font, 40);
-	text.setString("Fullscreen: F1");
-	text.setPosition(X - (sizeWindow.x / 2) + 200, Y - (sizeWindow.y / 2) + 25);
-	text.setStyle(sf::Text::Bold);
-	window.draw(text);
+	Text fullsc("", font, 40);
+	fullsc.setString("Fullscreen: F1");
+	fullsc.setPosition(player.x - (sizeWindow.x / 2) + 350, player.y - (sizeWindow.y / 2) - 10);
+	fullsc.setStyle(sf::Text::Bold);
+	window.draw(fullsc);
 
+	Text music("", font, 40);
+	music.setString("Music on/off: F2");
+	music.setPosition(player.x - (sizeWindow.x / 2) + 350, player.y - (sizeWindow.y / 2) + 45);
+	music.setStyle(sf::Text::Bold);
+	window.draw(music);
 
+	Text esc("", font, 40);
+	esc.setString("Menu: Ecs");
+	esc.setPosition(player.x - (sizeWindow.x / 2) + 700, player.y - (sizeWindow.y / 2) - 10);
+	esc.setStyle(sf::Text::Bold);
+	window.draw(esc);
 }

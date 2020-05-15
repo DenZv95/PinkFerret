@@ -15,12 +15,14 @@
 using namespace sf;
 
 bool startGame() {
-	RenderWindow window(sf::VideoMode(1280, 800), "Game");
+	RenderWindow window(sf::VideoMode(1280, 720), "Game");
 
 	Menu menu(window.getSize().x, window.getSize().y);
 	menu.draw(window);
 
 	bool isFullsceen = true;
+
+	Hud hud = Hud();
 
 	Clock clock;
 
@@ -49,25 +51,25 @@ bool startGame() {
 	zombie->settings(2700, 2300, 190, 180, 1);
 	player->entitys.push_back(zombie);
 
-	/*Zombie* zombie2 = new Zombie(lvl, player);
+	Zombie* zombie2 = new Zombie(lvl, player);
 	zombie2->settings(2700, 2700, 190, 180, 1);
-	entities.push_back(zombie2);
+	player->entitys.push_back(zombie2);
 
 	Zombie* zombie3 = new Zombie(lvl, player);
 	zombie3->settings(1700, 2200, 190, 180, 1);
-	entities.push_back(zombie3);
+	player->entitys.push_back(zombie3);
 
 	Zombie* zombie4 = new Zombie(lvl, player);
 	zombie4->settings(1700, 2700, 190, 180, 1);
-	entities.push_back(zombie4);
+	player->entitys.push_back(zombie4);
 
 	Zombie* zombie5 = new Zombie(lvl, player);
 	zombie5->settings(1700, 1600, 190, 180, 1);
-	entities.push_back(zombie5);
+	player->entitys.push_back(zombie5);
 
 	Zombie* zombie6 = new Zombie(lvl, player);
 	zombie6->settings(2300, 1900, 190, 180, 1);
-	entities.push_back(zombie6);*/
+	player->entitys.push_back(zombie6);
 
 	while (window.isOpen())
 	{
@@ -86,12 +88,12 @@ bool startGame() {
 				case Keyboard::F1:
 					if (false == isFullsceen)
 					{
-						window.create(VideoMode(1280, 800), "Pink Ferret", Style::Default);
+						window.create(VideoMode(1280, 720), "Pink Ferret", Style::Default);
 						isFullsceen = true;
 					}
 					else
 					{
-						window.create(VideoMode(1280, 800), "Pink Ferret", Style::Fullscreen);
+						window.create(VideoMode(1280, 720), "Pink Ferret", Style::Fullscreen);
 						isFullsceen = false;
 					}
 					break;
@@ -177,6 +179,7 @@ bool startGame() {
 		for (auto i : player->bullets)
 			i->draw(window, time);
 
+		hud.draw(window, *player);
 		window.display();
 
 	}

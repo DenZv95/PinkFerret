@@ -1,6 +1,7 @@
 #pragma once
 #include "../Animation.h"
 #include <ZombieState.h>
+#include <SFML/Audio.hpp>
 
 using namespace sf;
 class MoveZombieState : public ZombieState
@@ -14,4 +15,8 @@ private:
 	Texture move_texture;
 	Animation* aMove;
 	float angle = 0,dx,dy;
+	SoundBuffer moveBuffer, attackBuffer, deathBuffer;
+	Sound* move;
+	Sound* attack;
+	Sound* death;
 };

@@ -5,7 +5,6 @@
 PasiveZombieState::PasiveZombieState()
 {
 	texture.loadFromFile("Media/zombie/zombie-stop.png");
-	//texture.loadFromFile("ombie-stop.png");
 	animation = new Animation(texture, 0, 0, 241, 222, 1, 0.007f);
 	angle = (atan2(241 - 258, 241 - 144)) * 180 / 3.14159265;
 }
@@ -23,6 +22,11 @@ Sprite* PasiveZombieState::draw(float time)
 
 ZombieState *PasiveZombieState::Update(Zombie& zombie, Player& player, float time)
 {
+	if (FloatRect(zombie.x - 500 / 2, zombie.y - 500 / 2, 500, 500).intersects(player.getRect()))
+	{
+		return zombie.States.getMoveState();
+	}
+
 	if (zombie.life < 95)
 		return zombie.States.getMoveState();
 

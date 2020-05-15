@@ -14,7 +14,8 @@ public:
 private:
 	sf::Texture move_texture;
 	Animation* aMove;
-	SoundBuffer reloadBuffer, meleeattackBuffer;
+	SoundBuffer reloadBuffer, meleeattackBuffer, deathBuffer;
 	Sound* meleeattack;
 	Sound* reload;
+	Sound* death;
 };

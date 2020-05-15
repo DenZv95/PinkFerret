@@ -1,5 +1,6 @@
 #include "Animation.h"
 #include <sstream>
+#include "Player.h"
 class Hud
 {
 public:
@@ -8,7 +9,7 @@ public:
 	Texture ammo_texture;
 	Animation* aAmmo;
 	Animation* aHP;
-    void draw(RenderWindow& window, int HP, int ammo, float X, float Y);
+    void draw(RenderWindow& window, Player& plauer);
 private:
 	Font font;
 	Vector2u sizeWindow;

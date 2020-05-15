@@ -14,6 +14,10 @@ MovePlayerState::MovePlayerState()
 	reloadBuffer.loadFromFile("Media/Sound/reload.wav");
 	reload = new Sound(reloadBuffer);
 	reload->setVolume(50);
+
+	deathBuffer.loadFromFile("Media/Sound/scream.ogg");
+	death = new Sound(deathBuffer);
+	death->setVolume(25);
 }
 
 MovePlayerState::~MovePlayerState()
@@ -68,8 +72,9 @@ PlayerState* MovePlayerState::handleInput(Player& player, sf::Event event, float
 		}
 	}
 
-	if (player.life < 1)
+	if (player.life < 1) { 
+		death->play();
 		return player.States.getDeadState();
-
+	}
 	return nullptr;
 }
