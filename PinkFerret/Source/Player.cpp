@@ -85,6 +85,23 @@ void Player::Move(float dX, float dY, float time)
 	view.setCenter(x + 100, y);
 }
 
+void Player::Meleeattack()
+{
+	for (auto a : entitys)
+	{
+		if (a->life)
+		{
+			if (a->name == "Zombie")
+				if (getRect().intersects(a->getRect()))
+				{
+					a->damage();
+					//b->damage();
+				}
+			
+		}
+	}
+}
+
 void Player::Shoot()
 {
 		if (ammo > 0)

@@ -13,4 +13,5 @@ public:
 private:
 	Texture texture;
 	Animation* animation;
+	float angle;
 };

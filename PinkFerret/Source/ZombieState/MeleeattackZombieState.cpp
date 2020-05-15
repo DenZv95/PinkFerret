@@ -1,4 +1,5 @@
 #include "MeleeattackZombieState.h"
+#include "../Zombie.h"
 #include "../Player.h"
 
 MeleeattackZombieState::MeleeattackZombieState()
@@ -14,21 +15,22 @@ MeleeattackZombieState::~MeleeattackZombieState()
 sf::Sprite* MeleeattackZombieState::draw(float time)
 {
 	animation->update(time);
+	animation->sprite.setRotation(angle);
 	return &(animation->sprite);
 }
 
 ZombieState* MeleeattackZombieState::Update(Zombie& zombie, Player& player, float time)
 {
 
+	angle = (atan2(player.y - zombie.y, player.x - zombie.x)) * 180 / 3.14159265;
 
 	if (animation->isEnd())
 	{
-		//return new MovePlayerState();
-		//return player.States.getMoveState();
+		return zombie.States.getMoveState();
 	}
 
-	if (player.life < 1)
-		//return player.States.getDeadState();
+	if (zombie.life < 1)
+		return zombie.States.getDeadState();
 
 	return nullptr;
 }

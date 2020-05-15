@@ -22,7 +22,6 @@ int main()
 	Texture sBullet_texture;
 	sBullet_texture.loadFromFile("Media/survivor/FullMetalJacket.png");
 	Animation sBullet(sBullet_texture, 0, 0, 5, 4, 1, 0.8);
-	std::list<Entity*> entities;
 	float time;
 
 
@@ -31,11 +30,12 @@ int main()
 	//player->settings(800, 300, 190, 180, 1);
 	//player->settings(800, 2200, 190, 180, 1);
 	player->settings(2400, 2300, 190, 180, 1);
-	entities.push_back(player);
+	player->entitys.push_back(player);
 
 	Zombie* zombie = new Zombie(lvl, player);
 	zombie->settings(2700, 2300, 190, 180, 1);
-	entities.push_back(zombie);
+	//entities.push_back(zombie);
+	player->entitys.push_back(zombie);
 
 	//Zombie* zombie2 = new Zombie(lvl, player);
 	//zombie2->settings(2700, 2700, 190, 180, 1);
@@ -109,7 +109,7 @@ int main()
 		{
 			if (a -> life)
 			{
-				for (auto b : entities)
+				for (auto b : player->entitys)
 				{
 					if (b->name == "Zombie" && a->name == "Bullet")
 						if (a->getRect().intersects(b->getRect()))
@@ -121,7 +121,7 @@ int main()
 			}
 		}
 
-		for (auto i = entities.begin(); i != entities.end();)
+		for (auto i = player->entitys.begin(); i != player->entitys.end();)
 		{
 			Entity* e = *i;
 
@@ -157,7 +157,7 @@ int main()
 
 		window.clear(Color(77, 83, 140));
 		lvl.Draw(window);
-		for (auto i : entities) 
+		for (auto i : player->entitys)
 			i->draw(window, time);
 
 		for (auto i : player->bullets) 
