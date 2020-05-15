@@ -29,32 +29,33 @@ int main()
 	Player* player = new Player(lvl);
 	//player->settings(300, 300, 190, 180, 1);
 	//player->settings(800, 300, 190, 180, 1);
-	player->settings(800, 2200, 190, 180, 1);
+	//player->settings(800, 2200, 190, 180, 1);
+	player->settings(2400, 2300, 190, 180, 1);
 	entities.push_back(player);
 
 	Zombie* zombie = new Zombie(lvl, player);
 	zombie->settings(2700, 2300, 190, 180, 1);
 	entities.push_back(zombie);
 
-	Zombie* zombie2 = new Zombie(lvl, player);
-	zombie2->settings(2700, 2700, 190, 180, 1);
-	entities.push_back(zombie2);
-	
-	Zombie* zombie3 = new Zombie(lvl, player);
-	zombie3->settings(1700, 2200, 190, 180, 1);
-	entities.push_back(zombie3);
-	
-	Zombie* zombie4 = new Zombie(lvl, player);
-	zombie4->settings(1700, 2700, 190, 180, 1);
-	entities.push_back(zombie4);
-	
-	Zombie* zombie5 = new Zombie(lvl, player);
-	zombie5->settings(1700, 1600, 190, 180, 1);
-	entities.push_back(zombie5);
-	
-	Zombie* zombie6 = new Zombie(lvl, player);
-	zombie6->settings(2300, 1900, 190, 180, 1);
-	entities.push_back(zombie6);
+	//Zombie* zombie2 = new Zombie(lvl, player);
+	//zombie2->settings(2700, 2700, 190, 180, 1);
+	//entities.push_back(zombie2);
+	//
+	//Zombie* zombie3 = new Zombie(lvl, player);
+	//zombie3->settings(1700, 2200, 190, 180, 1);
+	//entities.push_back(zombie3);
+	//
+	//Zombie* zombie4 = new Zombie(lvl, player);
+	//zombie4->settings(1700, 2700, 190, 180, 1);
+	//entities.push_back(zombie4);
+	//
+	//Zombie* zombie5 = new Zombie(lvl, player);
+	//zombie5->settings(1700, 1600, 190, 180, 1);
+	//entities.push_back(zombie5);
+	//
+	//Zombie* zombie6 = new Zombie(lvl, player);
+	//zombie6->settings(2300, 1900, 190, 180, 1);
+	//entities.push_back(zombie6);
 
 
 	while (window.isOpen())
@@ -158,6 +159,7 @@ int main()
 		lvl.Draw(window);
 		for (auto i : entities) 
 			i->draw(window, time);
+
 		for (auto i : player->bullets) 
 			i->draw(window, time);
 

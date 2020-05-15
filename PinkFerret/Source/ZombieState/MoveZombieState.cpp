@@ -12,10 +12,10 @@ MoveZombieState::~MoveZombieState()
 {
 }
 
-sf::Sprite MoveZombieState::draw(float time)
+sf::Sprite* MoveZombieState::draw(float time)
 {
 	aMove->update(time);
-	return aMove->sprite;
+	return &(aMove->sprite);
 }
 
 ZombieState* MoveZombieState::Update(Zombie& zombie, Player& player, float time)

@@ -12,10 +12,10 @@ DeadZombieState::~DeadZombieState()
 {
 }
 
-sf::Sprite DeadZombieState::draw(float time)
+sf::Sprite* DeadZombieState::draw(float time)
 {
 	aDead->update(time);
-	return aDead->sprite;
+	return &(aDead->sprite);
 }
 
 ZombieState* DeadZombieState::Update(Zombie& zombie, Player& player, float time)

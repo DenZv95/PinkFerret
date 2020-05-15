@@ -8,7 +8,7 @@ class DeadZombieState : public ZombieState
 public:
 	DeadZombieState();
 	virtual ~DeadZombieState();
-	virtual sf::Sprite draw(float time);
+	virtual sf::Sprite* draw(float time);
 	virtual ZombieState* Update(Zombie& zombie, Player& player, float time);
 private:
 	sf::Texture deadTexture;

@@ -8,7 +8,7 @@ class MeleeattackZombieState : public ZombieState
 public:
 	MeleeattackZombieState();
 	virtual ~MeleeattackZombieState();
-	virtual sf::Sprite draw(float time);
+	virtual sf::Sprite* draw(float time);
 	virtual ZombieState* Update(Zombie& zombie, Player& player, float time);
 private:
 	sf::Texture texture;

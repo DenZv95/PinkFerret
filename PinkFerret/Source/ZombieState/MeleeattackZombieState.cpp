@@ -11,10 +11,10 @@ MeleeattackZombieState::~MeleeattackZombieState()
 {
 }
 /**/
-sf::Sprite MeleeattackZombieState::draw(float time)
+sf::Sprite* MeleeattackZombieState::draw(float time)
 {
 	animation->update(time);
-	return animation->sprite;
+	return &(animation->sprite);
 }
 
 ZombieState* MeleeattackZombieState::Update(Zombie& zombie, Player& player, float time)
