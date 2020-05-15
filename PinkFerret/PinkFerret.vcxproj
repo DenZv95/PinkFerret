@@ -147,6 +147,7 @@
     <ClCompile Include="Source\Entity.cpp" />
     <ClCompile Include="Source\Hud.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\Menu.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\TiledMapLoader\level.cpp" />
     <ClCompile Include="Source\TinyXML\tinystr.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Source\Bullet.h" />
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\Hud.h" />
+    <ClInclude Include="Source\Menu.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\TiledMapLoader\level.h" />
     <ClInclude Include="Source\TiledMapLoader\Objects.h" />
