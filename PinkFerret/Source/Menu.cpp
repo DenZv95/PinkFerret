@@ -29,7 +29,7 @@ Menu::Menu(float width, float height)
 	menu[2].setString("Exit");
 	menu[2].setPosition(Vector2f(width / 2.5, height / 1.7));
 
-	selectedItemIndex = 0;
+	selectedItemIndex = -1;
 }
 
 Menu::~Menu()
@@ -41,10 +41,6 @@ void Menu::draw(RenderWindow& window)
 	music.openFromFile("Media/Sound/Music/menu.ogg");//загружаем файл
 	music.setVolume(30);
 	music.play();
-
-	SoundBuffer shootBuffer;//создаём буфер для звука
-	shootBuffer.loadFromFile("Media/Sound/shoot.wav");//загружаем в него звук
-	Sound shooting(shootBuffer);//создаем звук и загружаем в него звук из буфера
 
 	TextureSize = menuBackground.getSize();
 	WindowSize = window.getSize();
@@ -62,21 +58,23 @@ void Menu::draw(RenderWindow& window)
 		//menu[1].setFillColor(Color::Black);
 		menu[2].setFillColor(Color::Black);
 
-		std::cout << Mouse::getPosition(window).x << " " << Mouse::getPosition(window).y << std::endl;
-
 		for (int i = 0; i < 3; i++)
 		{
 			if (menu[i].getGlobalBounds().contains(window.mapPixelToCoords(sf::Mouse::getPosition(window))))
 			{
 				menu[i].setFillColor(Color::White); selectedItemIndex = i;
+				break;
 			}
+			else
+				selectedItemIndex = -1;
 		}
-
+		
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (selectedItemIndex == 0) isMenu = false;//если нажали первую кнопку, то выходим из меню 
+			if (selectedItemIndex == 0) { isMenu = false; selectedItemIndex = -1; }//если нажали первую кнопку, то выходим из меню 
 			//if (selectedItemIndex == 1) { window.draw(menuBg); window.display(); while (!Keyboard::isKeyPressed(Keyboard::Escape)); }
-			if (selectedItemIndex == 2) { window.close(); isMenu = false; }
+			if (selectedItemIndex == 2) { isMenu = false; window.close(); selectedItemIndex = -1;}
+
 		}
 
 		window.clear();

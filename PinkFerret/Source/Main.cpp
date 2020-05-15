@@ -33,11 +33,27 @@ bool startGame() {
 	std::list<Entity*> entities;
 	float time;
 	
-	Music music;//создаем объект музыки
-	music.openFromFile("Media/Sound/Music/game.ogg");//загружаем файл
+	Music music;
+	music.openFromFile("Media/Sound/Music/game.ogg");
 	music.setVolume(25);
 	music.play();
 	bool musicOn = true;
+
+	SoundBuffer shootBuffer;
+	shootBuffer.loadFromFile("Media/Sound/shoot.wav");
+	Sound shoot(shootBuffer);
+
+	SoundBuffer reloadBuffer;
+	reloadBuffer.loadFromFile("Media/Sound/reload.wav");
+	Sound reload(reloadBuffer);
+
+	SoundBuffer meleeattackBuffer;
+	meleeattackBuffer.loadFromFile("Media/Sound/meleeattack.wav");
+	Sound meleeattack(meleeattackBuffer);
+	
+	SoundBuffer moveBuffer;
+	moveBuffer.loadFromFile("Media/Sound/move.wav");
+	Sound move(moveBuffer);
 
 	Player* player = new Player(lvl);
 	//player->settings(300, 300, 190, 180, 1);
@@ -68,7 +84,6 @@ bool startGame() {
 	Zombie* zombie6 = new Zombie(lvl, player);
 	zombie6->settings(2300, 1900, 190, 180, 1);
 	entities.push_back(zombie6);
-
 
 	while (window.isOpen())
 	{
@@ -117,32 +132,39 @@ bool startGame() {
 
 		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
 			player->Move(-0.12f, 0.f, time);
+			move.play();
 		}
 
 
 		if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
 			player->Move(0.12f, 0.f, time);
+			move.play();
 		}
 
 		if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
 			player->Move(0.f, -0.12f, time);
+			move.play();
 		}
 
 		if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
 			player->Move(0.f, 0.12f, time);
+			move.play();
 		}
 
 
 		if (Mouse::isButtonPressed(Mouse::Left)) {
 			player->Shoot(entities, sBullet, lvl);
+			shoot.play();
 		}
 
 		if (Mouse::isButtonPressed(Mouse::Right)) {
 			player->Meleeattack(entities);
+			meleeattack.play();
 		}
 
 		if (Keyboard::isKeyPressed(Keyboard::R)) {
 			player->Reload();
+			reload.play();
 		}
 
 
