@@ -87,7 +87,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\PinkFerret\Source\TiledMapLoader;$(SolutionDir)\PinkFerret\Source\TinyXML;$(SolutionDir)\External\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\PinkFerret\Source\ZombieState;$(SolutionDir)\PinkFerret\Source\PlayerState;$(SolutionDir)\PinkFerret\Source\TiledMapLoader;$(SolutionDir)\PinkFerret\Source\TinyXML;$(SolutionDir)\External\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,12 +148,25 @@
     <ClCompile Include="Source\Hud.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\PlayerState\DeadPlayerState.cpp" />
+    <ClCompile Include="Source\PlayerState\MeleeattackPlayerState.cpp" />
+    <ClCompile Include="Source\PlayerState\MovePlayerState.cpp" />
+    <ClCompile Include="Source\PlayerState\PlayerState.cpp" />
+    <ClCompile Include="Source\PlayerState\ReloadPlayerState.cpp" />
+    <ClCompile Include="Source\PlayerState\ShootPlayerState.cpp" />
+    <ClCompile Include="Source\PlayerState\StaticState.cpp" />
     <ClCompile Include="Source\TiledMapLoader\level.cpp" />
     <ClCompile Include="Source\TinyXML\tinystr.cpp" />
     <ClCompile Include="Source\TinyXML\tinyxml.cpp" />
     <ClCompile Include="Source\TinyXML\tinyxmlerror.cpp" />
     <ClCompile Include="Source\TinyXML\tinyxmlparser.cpp" />
     <ClCompile Include="Source\Zombie.cpp" />
+    <ClCompile Include="Source\ZombieState\DeadZombieState.cpp" />
+    <ClCompile Include="Source\ZombieState\MeleeattackZombieState.cpp" />
+    <ClCompile Include="Source\ZombieState\MoveZombieState.cpp" />
+    <ClCompile Include="Source\ZombieState\PasiveZombieState.cpp" />
+    <ClCompile Include="Source\ZombieState\StaticStateZombie.cpp" />
+    <ClCompile Include="Source\ZombieState\ZombieState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Animation.h" />
@@ -161,11 +174,24 @@
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\Hud.h" />
     <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Source\PlayerState\DeadPlayerState.h" />
+    <ClInclude Include="Source\PlayerState\MeleeattackPlayerState.h" />
+    <ClInclude Include="Source\PlayerState\MovePlayerState.h" />
+    <ClInclude Include="Source\PlayerState\PlayerState.h" />
+    <ClInclude Include="Source\PlayerState\ReloadPlayerState.h" />
+    <ClInclude Include="Source\PlayerState\ShootPlayerState.h" />
+    <ClInclude Include="Source\PlayerState\StaticState.h" />
     <ClInclude Include="Source\TiledMapLoader\level.h" />
     <ClInclude Include="Source\TiledMapLoader\Objects.h" />
     <ClInclude Include="Source\TinyXML\tinystr.h" />
     <ClInclude Include="Source\TinyXML\tinyxml.h" />
     <ClInclude Include="Source\Zombie.h" />
+    <ClInclude Include="Source\ZombieState\DeadZombieState.h" />
+    <ClInclude Include="Source\ZombieState\MeleeattackZombieState.h" />
+    <ClInclude Include="Source\ZombieState\MoveZombieState.h" />
+    <ClInclude Include="Source\ZombieState\PasiveZombieState.h" />
+    <ClInclude Include="Source\ZombieState\StaticStateZombie.h" />
+    <ClInclude Include="Source\ZombieState\ZombieState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

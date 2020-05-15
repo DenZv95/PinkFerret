@@ -19,6 +19,12 @@
     <Filter Include="Файлы ресурсов\TiledMapLoader">
       <UniqueIdentifier>{63faba83-09b2-441b-8729-d3fb771c6072}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\PlayerState">
+      <UniqueIdentifier>{d35df206-eacf-4e11-bffc-25ae6b590736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\ZombieState">
+      <UniqueIdentifier>{45473f51-4cbe-417e-a76e-35d820c55573}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Main.cpp">
@@ -60,6 +66,45 @@
     <ClCompile Include="Source\Hud.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayerState\MovePlayerState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerState\PlayerState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerState\MeleeattackPlayerState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerState\StaticState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerState\ReloadPlayerState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerState\ShootPlayerState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerState\DeadPlayerState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZombieState\DeadZombieState.cpp">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZombieState\MeleeattackZombieState.cpp">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZombieState\MoveZombieState.cpp">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZombieState\PasiveZombieState.cpp">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZombieState\StaticStateZombie.cpp">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ZombieState\ZombieState.cpp">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Player.h">
@@ -91,6 +136,45 @@
     </ClInclude>
     <ClInclude Include="Source\Hud.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\MovePlayerState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\PlayerState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\MeleeattackPlayerState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\StaticState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\ReloadPlayerState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\ShootPlayerState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\DeadPlayerState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ZombieState\DeadZombieState.h">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ZombieState\MeleeattackZombieState.h">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ZombieState\MoveZombieState.h">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ZombieState\PasiveZombieState.h">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ZombieState\StaticStateZombie.h">
+      <Filter>Исходные файлы\ZombieState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ZombieState\ZombieState.h">
+      <Filter>Исходные файлы\ZombieState</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

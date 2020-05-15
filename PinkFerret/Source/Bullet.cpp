@@ -5,9 +5,11 @@ const int W = 1200;
 const int H = 800;
 
 
-Bullet::Bullet(Animation& a, Level& level)
+Bullet::Bullet(Animation& a, std::vector<Object> obcj)
 {
-	obj = level.GetAllObjects();
+	//obj = level.GetAllObjects();
+	life = 1;
+	obj = obcj;
 	name = "Bullet";
 	anim = a;
 }
