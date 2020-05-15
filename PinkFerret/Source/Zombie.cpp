@@ -3,45 +3,47 @@
 Zombie::Zombie(Level& level, Player* player)
 {
 
-	life = 50;
+	life = 100;
 	name = "Zombie";
-	move_texture.loadFromFile("Media/zombie/zombie-idle.png");
-	meleeattack_texture.loadFromFile("Media/zombie/zombie-attack.png");
-
-	aMove = new Animation(move_texture, 0, 0, 241, 222, 17, 0.007f);
-	aMeleeattack = new Animation(meleeattack_texture, 0, 0, 318, 294, 9, 0.012f);
-
-	sprite.setTexture(move_texture);
-	sprite.setTextureRect(IntRect(0, 0, 260, 230));
-	amimationFinish = true;
-
 	obj = level.GetAllObjects();
 	pl = player;
+	States = StaticStateZombie();
+	state_ = States.getPasiveState();
 }
 
 void Zombie::update(float time)
 {
-
-	dx = cos(angle * 0.017453f) * 0.1 * time;
-    dy = sin(angle * 0.017453f) * 0.1 * time;
-	if (getRect().intersects(pl->getRect()))
+	ZombieState* state = state_->Update(*this, *pl, time);
+	if (state != nullptr)
 	{
-		if (state != meleeattack) {
-			state = meleeattack;
-			pl->damage();
-			
-		}
-		dx = 0; dy = 0;
+		state_ = state;
 	}
-	checkCollisionWithMap(dx, dy);
-	if (dx > 0 || dy > 0) state = move;
-	x += dx;
-	y += dy;
+	//dx = cos(angle * 0.017453f) * 0.1 * time;
+ //   dy = sin(angle * 0.017453f) * 0.1 * time;
+	//if (getRect().intersects(pl->getRect()))
+	//{
+	//	if (state != meleeattack) {
+	//		state = meleeattack;
+	//		pl->damage();
+	//		
+	//	}
+	//	dx = 0; dy = 0;
+	//}
+	//checkCollisionWithMap(dx, dy);
+	//if (dx > 0 || dy > 0) state = move;
+	//x += dx;
+	//y += dy;
 }
 
 void Zombie::draw(RenderWindow& window, float time)
 {
-	switch (state)
+
+	angle = (atan2(pl->y - y, pl->x - x)) * 180 / 3.14159265;
+	sprite = state_->draw(time);
+	sprite->setRotation(angle);
+	sprite->setPosition(x, y);
+	window.draw(*sprite);
+	/*switch (state)
 	{
 	case move:
 		aMove->update(time);
@@ -66,14 +68,14 @@ void Zombie::draw(RenderWindow& window, float time)
 	if (amimationFinish) {
 		state = idle;
 	}
-	window.draw(sprite);
+	window.draw(sprite);*/
 }
 
 void Zombie::Meleeattack()
 {
-	if (amimationFinish) {
-		state = meleeattack;
-	}
+	//if (amimationFinish) {
+	//	state = meleeattack;
+	//}
 }
 
 void Zombie::checkCollisionWithMap(float Dx, float Dy)

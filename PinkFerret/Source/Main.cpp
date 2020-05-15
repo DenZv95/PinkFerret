@@ -58,14 +58,14 @@ bool startGame() {
 	Player* player = new Player(lvl);
 	//player->settings(300, 300, 190, 180, 1);
 	//player->settings(800, 300, 190, 180, 1);
-	player->settings(800, 2200, 190, 180, 1);
+	player->settings(2400, 2200, 190, 180, 1);
 	entities.push_back(player);
 
 	Zombie* zombie = new Zombie(lvl, player);
 	zombie->settings(2700, 2300, 190, 180, 1);
 	entities.push_back(zombie);
 
-	Zombie* zombie2 = new Zombie(lvl, player);
+	/*Zombie* zombie2 = new Zombie(lvl, player);
 	zombie2->settings(2700, 2700, 190, 180, 1);
 	entities.push_back(zombie2);
 
@@ -83,7 +83,7 @@ bool startGame() {
 
 	Zombie* zombie6 = new Zombie(lvl, player);
 	zombie6->settings(2300, 1900, 190, 180, 1);
-	entities.push_back(zombie6);
+	entities.push_back(zombie6);*/
 
 	while (window.isOpen())
 	{
@@ -130,51 +130,16 @@ bool startGame() {
 				window.close();
 		}
 
-		if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
-			player->Move(-0.12f, 0.f, time);
-			move.play();
-		}
+		player->handleInput(event, time);
 
 
-		if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
-			player->Move(0.12f, 0.f, time);
-			move.play();
-		}
-
-		if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
-			player->Move(0.f, -0.12f, time);
-			move.play();
-		}
-
-		if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
-			player->Move(0.f, 0.12f, time);
-			move.play();
-		}
-
-
-		if (Mouse::isButtonPressed(Mouse::Left)) {
-			player->Shoot(entities, sBullet, lvl);
-			shoot.play();
-		}
-
-		if (Mouse::isButtonPressed(Mouse::Right)) {
-			player->Meleeattack(entities);
-			meleeattack.play();
-		}
-
-		if (Keyboard::isKeyPressed(Keyboard::R)) {
-			player->Reload();
-			reload.play();
-		}
-
-
-		for (auto a : entities)
+		for (auto a : player->bullets)
 		{
 			if (a->life)
 			{
 				for (auto b : entities)
 				{
-					if (a->name == "Zombie" && b->name == "Bullet")
+					if (b->name == "Zombie" && a->name == "Bullet")
 						if (a->getRect().intersects(b->getRect()))
 						{
 							a->damage();
@@ -189,22 +154,45 @@ bool startGame() {
 			Entity* e = *i;
 
 			e->update(time);
+
+			//if (e->life == false) 
+			//{ 
+			//	i = entities.erase(i); 
+			//	if (e -> name != "Player")
+			//		delete e; 
+			//}
+			//else 
+			i++;
+		}
+
+
+		for (auto i = player->bullets.begin(); i != player->bullets.end();)
+		{
+			Entity* e = *i;
+
+			e->update(time);
 			//e->anim.update();
 
 			if (e->life == false)
 			{
-				i = entities.erase(i);
-				if (e->name != "Player")
-					delete e;
+				i = player->bullets.erase(i);
+				delete e;
 			}
 			else i++;
 		}
 
 		if (Keyboard::isKeyPressed(Keyboard::Escape)) { return true; }
 
+		window.clear();
+
 		window.clear(Color(77, 83, 140));
 		lvl.Draw(window);
-		for (auto i : entities) i->draw(window, time);
+		for (auto i : entities)
+			i->draw(window, time);
+
+		for (auto i : player->bullets)
+			i->draw(window, time);
+
 		window.display();
 
 	}
