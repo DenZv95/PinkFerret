@@ -11,7 +11,6 @@ Player::Player(Level& level)
 	States = StaticState();
 
 	state_ = States.getMoveState();
-	//state_ = new MovePlayerState();
 	int a = 1;
 }
 
@@ -24,6 +23,7 @@ void Player::draw(RenderWindow& window, float time)
 {
 	Vector2i pixelPos = Mouse::getPosition(window);
 	Vector2f positionMouse = window.mapPixelToCoords(pixelPos);
+
 	sprite = state_->draw(time);
 	
 	sprite.setPosition(x, y);
@@ -39,10 +39,8 @@ void Player::handleInput(Event event, float time)
 	PlayerState* state = state_->handleInput(*this, event, time);
 	if (state != nullptr)
 	{
-		//delete state_;
 		state_ = state;
 	}
-	//return nullptr;
 }
 
 void Player::checkCollisionWithMap(float Dx, float Dy)
