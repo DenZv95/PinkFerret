@@ -3,14 +3,14 @@
 #include <PlayerState.h>
 
 using namespace sf;
-class MeleeattackPlayerState : public PlayerState
+class DeadPlayerState : public PlayerState
 {
 public:
-	MeleeattackPlayerState();
-	virtual ~MeleeattackPlayerState();
+	DeadPlayerState();
+	virtual ~DeadPlayerState();
 	virtual sf::Sprite draw(float time);
 	virtual PlayerState* handleInput(Player& player, sf::Event event, float time);
 private:
-	sf::Texture meleeattack_texture;
-	Animation* aMeleeattack;
+	sf::Texture deadTexture;
+	Animation* aDead;
 };

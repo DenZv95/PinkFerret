@@ -3,6 +3,7 @@
 #include "MeleeattackPlayerState.h"
 #include "ReloadPlayerState.h"
 #include "ShootPlayerState.h"
+#include "DeadPlayerState.h"
 
 class StaticState
 {
@@ -12,9 +13,11 @@ public:
 	PlayerState* getMeleeattackState();
 	PlayerState* getReloadState();
 	PlayerState* getShootState();
+	PlayerState* getDeadState();
 private:
 	MovePlayerState* Move;
 	MeleeattackPlayerState* Meleeattack;
 	ReloadPlayerState* Reload;
 	ShootPlayerState* Shoot;
+	DeadPlayerState* Dead;
 };

@@ -56,5 +56,8 @@ PlayerState* MovePlayerState::handleInput(Player& player, sf::Event event, float
 		}
 	}
 
+	if (player.life < 1)
+		return player.States.getDeadState();
+
 	return nullptr;
 }

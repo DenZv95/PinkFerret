@@ -1,45 +1,24 @@
-#include "MeleeattackPlayerState.h"
+#include "DeadPlayerState.h"
 #include "../Player.h"
 
-MeleeattackPlayerState::MeleeattackPlayerState()
+DeadPlayerState::DeadPlayerState()
 {
-	meleeattack_texture.loadFromFile("Media/survivor/handgun/survivor-meleeattack_handgun.png");
-	aMeleeattack = new Animation(meleeattack_texture, -10, 0, 300, 240, 15, 0.01f);
+	deadTexture.loadFromFile("Media/survivor/handgun/survivor-dead_handgun.png");
+	aDead = new Animation(deadTexture, 0, 0, 260, 230, 1, 0.007f);
 }
 
-MeleeattackPlayerState::~MeleeattackPlayerState()
+DeadPlayerState::~DeadPlayerState()
 {
 }
-/**/
-sf::Sprite MeleeattackPlayerState::draw(float time)
+
+sf::Sprite DeadPlayerState::draw(float time)
 {
-	aMeleeattack->update(time);
-	return aMeleeattack->sprite;
+	aDead->update(time);
+	return aDead->sprite;
 }
 
-PlayerState* MeleeattackPlayerState::handleInput(Player& player, sf::Event event, float time)
+PlayerState* DeadPlayerState::handleInput(Player& player, sf::Event event, float time)
 {
-
-	if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
-		player.Move(-0.12f, 0.f, time);
-	}
-
-	if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
-		player.Move(0.12f, 0.f, time);
-	}
-
-	if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
-		player.Move(0.f, -0.12f, time);
-	}
-
-	if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
-		player.Move(0.f, 0.12f, time);
-	}
-	if (aMeleeattack->isEnd())
-	{
-		//return new MovePlayerState();
-		return player.States.getMoveState();
-	}
 	
 	return nullptr;
 }

@@ -81,6 +81,9 @@
     <ClCompile Include="Source\PlayerState\ShootPlayerState.cpp">
       <Filter>Исходные файлы\PlayerState</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayerState\DeadPlayerState.cpp">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Player.h">
@@ -129,6 +132,9 @@
       <Filter>Исходные файлы\PlayerState</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerState\ShootPlayerState.h">
+      <Filter>Исходные файлы\PlayerState</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerState\DeadPlayerState.h">
       <Filter>Исходные файлы\PlayerState</Filter>
     </ClInclude>
   </ItemGroup>

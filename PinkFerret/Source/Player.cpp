@@ -11,9 +11,7 @@ Player::Player(Level& level)
 	view.reset(sf::FloatRect(x, y, 1280, 800));
 	sprite.setOrigin(260 / 2, 230 / 2);
 	States = StaticState();
-
 	state_ = States.getMoveState();
-	int a = 1;
 }
 
 void Player::update(float time)
@@ -29,7 +27,9 @@ void Player::draw(RenderWindow& window, float time)
 	sprite = state_->draw(time);
 	
 	sprite.setPosition(x, y);
-	angle = (atan2(positionMouse.y - y, positionMouse.x - x)) * 180 / 3.14159265;
+	if (life > 0)
+		angle = (atan2(positionMouse.y - y, positionMouse.x - x)) * 180 / 3.14159265;
+	
 	sprite.setRotation(angle);
 	window.draw(sprite);
 	view.setCenter(x + 100, y);

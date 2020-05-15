@@ -43,5 +43,8 @@ PlayerState  *ShootPlayerState::handleInput(Player& player, Event event, float t
 		return player.States.getMoveState();
 	}
 
+	if (player.life < 1)
+		return player.States.getDeadState();
+
 	return nullptr;
 }

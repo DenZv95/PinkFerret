@@ -126,13 +126,14 @@ int main()
 
 			e->update(time);
 
-			if (e->life == false) 
-			{ 
-				i = entities.erase(i); 
-				if (e -> name != "Player")
-					delete e; 
-			}
-			else i++;
+			//if (e->life == false) 
+			//{ 
+			//	i = entities.erase(i); 
+			//	if (e -> name != "Player")
+			//		delete e; 
+			//}
+			//else 
+			i++;
 		}
 
 
@@ -155,8 +156,10 @@ int main()
 
 		window.clear(Color(77, 83, 140));
 		lvl.Draw(window);
-		for (auto i : entities) i->draw(window, time);
-		for (auto i : player->bullets) i->draw(window, time);
+		for (auto i : entities) 
+			i->draw(window, time);
+		for (auto i : player->bullets) 
+			i->draw(window, time);
 
 		window.display();
 

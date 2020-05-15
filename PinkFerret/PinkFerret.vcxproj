@@ -148,6 +148,7 @@
     <ClCompile Include="Source\Hud.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Player.cpp" />
+    <ClCompile Include="Source\PlayerState\DeadPlayerState.cpp" />
     <ClCompile Include="Source\PlayerState\MeleeattackPlayerState.cpp" />
     <ClCompile Include="Source\PlayerState\MovePlayerState.cpp" />
     <ClCompile Include="Source\PlayerState\PlayerState.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Source\Entity.h" />
     <ClInclude Include="Source\Hud.h" />
     <ClInclude Include="Source\Player.h" />
+    <ClInclude Include="Source\PlayerState\DeadPlayerState.h" />
     <ClInclude Include="Source\PlayerState\MeleeattackPlayerState.h" />
     <ClInclude Include="Source\PlayerState\MovePlayerState.h" />
     <ClInclude Include="Source\PlayerState\PlayerState.h" />

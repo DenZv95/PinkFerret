@@ -40,6 +40,9 @@ PlayerState* MeleeattackPlayerState::handleInput(Player& player, sf::Event event
 		//return new MovePlayerState();
 		return player.States.getMoveState();
 	}
-	
+
+	if (player.life < 1)
+		return player.States.getDeadState();
+
 	return nullptr;
 }

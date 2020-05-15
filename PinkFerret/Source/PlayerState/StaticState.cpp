@@ -6,6 +6,7 @@ StaticState::StaticState()
 	Meleeattack = new MeleeattackPlayerState();
 	Reload = new ReloadPlayerState();
 	Shoot = new ShootPlayerState();
+	Dead = new DeadPlayerState();
 }
 
 PlayerState* StaticState::getMoveState()
@@ -26,4 +27,9 @@ PlayerState* StaticState::getReloadState()
 PlayerState* StaticState::getShootState()
 {
 	return Shoot;
+}
+
+PlayerState* StaticState::getDeadState()
+{
+	return Dead;
 }
