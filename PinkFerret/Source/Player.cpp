@@ -23,7 +23,6 @@ Player::Player(Level& level)
 
 	font.loadFromFile("Media/CyrilicOld.ttf");
 
-	hud = new Hud();
 
 }
 
@@ -98,7 +97,7 @@ void Player::draw(RenderWindow& window, float time)
 	}
 
 
-	hud->draw(window, life, ammo, view.getCenter().x, view.getCenter().y);
+	//hud->draw(window, life, ammo, view.getCenter().x, view.getCenter().y);
 	view.setCenter(x + 100, y);
 	window.setView(view);
 	window.draw(sprite);
