@@ -19,11 +19,11 @@ public:
 	void Move(float dX, float dY, float time);
 	virtual void handleInput(Event event, float time);
 	StaticState States;
+	int ammo = 2;
 private:
-	void checkCollisionWithMap(float Dx, float Dy) override;
-	
-	PlayerState* state_;
 
+	void checkCollisionWithMap(float Dx, float Dy) override;
+	PlayerState* state_;
 	View view;
 	Sprite sprite;
 

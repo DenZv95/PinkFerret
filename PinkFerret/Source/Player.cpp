@@ -83,6 +83,7 @@ void Player::Move(float dX, float dY, float time)
 	view.setCenter(x + 100, y);
 }
 
+
 /*
 Player::Player(Level& level)
 {

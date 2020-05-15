@@ -1,25 +1,25 @@
-#include "ReloadPlayerState.h"
+#include "MeleeattackPlayerState.h"
 #include "../Player.h"
 
-ReloadPlayerState::ReloadPlayerState()
+MeleeattackPlayerState::MeleeattackPlayerState()
 {
-	reload_texture.loadFromFile("Media/survivor/handgun/survivor-reload_handgun.png");
-	aReload = new Animation(reload_texture, 3, 0, 260, 230, 15, 0.011f);
+	meleeattack_texture.loadFromFile("Media/survivor/handgun/survivor-meleeattack_handgun.png");
+	aMeleeattack = new Animation(meleeattack_texture, -10, 0, 300, 240, 15, 0.01f);
 }
 
-ReloadPlayerState::~ReloadPlayerState()
+MeleeattackPlayerState::~MeleeattackPlayerState()
 {
 }
 /**/
-Sprite ReloadPlayerState::draw(float time)
+sf::Sprite MeleeattackPlayerState::draw(float time)
 {
-	aReload->update(time);
-	return aReload->sprite;
+	aMeleeattack->update(time);
+	return aMeleeattack->sprite;
 }
 
-PlayerState  *ReloadPlayerState::handleInput(Player& player, Event event, float time)
+PlayerState* MeleeattackPlayerState::handleInput(Player& player, sf::Event event, float time)
 {
-	
+
 	if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
 		player.Move(-0.12f, 0.f, time);
 	}
@@ -35,13 +35,11 @@ PlayerState  *ReloadPlayerState::handleInput(Player& player, Event event, float 
 	if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S)))) {
 		player.Move(0.f, 0.12f, time);
 	}
-
-	if (aReload->isEnd())
+	if (aMeleeattack->isEnd())
 	{
 		//return new MovePlayerState();
-		if (player.ammo < 7) player.ammo = 7;
 		return player.States.getMoveState();
 	}
-
+	
 	return nullptr;
 }
