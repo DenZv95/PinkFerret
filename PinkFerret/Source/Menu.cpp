@@ -37,8 +37,8 @@ Menu::~Menu()
 
 void Menu::draw(RenderWindow& window)
 {
-	Music music;//создаем объект музыки
-	music.openFromFile("Media/Sound/Music/menu.ogg");//загружаем файл
+	Music music;
+	music.openFromFile("Media/Sound/Music/menu.ogg");
 	music.setVolume(30);
 	music.play();
 
@@ -46,10 +46,10 @@ void Menu::draw(RenderWindow& window)
 	WindowSize = window.getSize();
 
 	float ScaleX = (float)WindowSize.x / TextureSize.x;
-	float ScaleY = (float)WindowSize.y / TextureSize.y;     //Calculate scale.
+	float ScaleY = (float)WindowSize.y / TextureSize.y; 
 
 	menuBg.setTexture(menuBackground);
-	menuBg.setScale(ScaleX, ScaleY);      //Set scale.
+	menuBg.setScale(ScaleX, ScaleY);    
 
 	bool isMenu = 1;
 	while (isMenu)
@@ -71,7 +71,7 @@ void Menu::draw(RenderWindow& window)
 		
 		if (Mouse::isButtonPressed(Mouse::Left))
 		{
-			if (selectedItemIndex == 0) { isMenu = false; selectedItemIndex = -1; }//если нажали первую кнопку, то выходим из меню 
+			if (selectedItemIndex == 0) { isMenu = false; selectedItemIndex = -1; }
 			//if (selectedItemIndex == 1) { window.draw(menuBg); window.display(); while (!Keyboard::isKeyPressed(Keyboard::Escape)); }
 			if (selectedItemIndex == 2) { isMenu = false; window.close(); selectedItemIndex = -1;}
 

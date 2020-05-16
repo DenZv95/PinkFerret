@@ -12,7 +12,7 @@ PasiveZombieState::PasiveZombieState()
 PasiveZombieState::~PasiveZombieState()
 {
 }
-/**/
+
 Sprite* PasiveZombieState::draw(float time)
 {
 

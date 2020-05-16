@@ -7,7 +7,6 @@ const int H = 800;
 
 Bullet::Bullet(Animation& a, std::vector<Object> obcj)
 {
-	//obj = level.GetAllObjects();
 	life = 1;
 	obj = obcj;
 	name = "Bullet";

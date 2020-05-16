@@ -11,7 +11,7 @@ MeleeattackZombieState::MeleeattackZombieState()
 MeleeattackZombieState::~MeleeattackZombieState()
 {
 }
-/**/
+
 sf::Sprite* MeleeattackZombieState::draw(float time)
 {
 	animation->update(time);

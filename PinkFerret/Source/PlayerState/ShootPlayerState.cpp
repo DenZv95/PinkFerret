@@ -10,7 +10,7 @@ ShootPlayerState::ShootPlayerState()
 ShootPlayerState::~ShootPlayerState()
 {
 }
-/**/
+
 Sprite ShootPlayerState::draw(float time)
 {
 	aShoot->update(time);
@@ -39,7 +39,6 @@ PlayerState  *ShootPlayerState::handleInput(Player& player, Event event, float t
 
 	if (aShoot->isEnd())
 	{
-		//return new MovePlayerState();
 		return player.States.getMoveState();
 	}
 

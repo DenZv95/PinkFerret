@@ -19,7 +19,7 @@ MoveZombieState::MoveZombieState()
 	death = new Sound(deathBuffer);
 	death->setVolume(25);
 }
-//123
+
 MoveZombieState::~MoveZombieState()
 {
 }

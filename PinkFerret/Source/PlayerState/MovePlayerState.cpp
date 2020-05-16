@@ -3,7 +3,6 @@
 
 MovePlayerState::MovePlayerState()
 {
-	//PlayerState::move = MovePlayerState();
 	move_texture.loadFromFile("Media/survivor/handgun/survivor-move_handgun.png");
 	aMove = new Animation(move_texture, 0, 0, 260, 230, 20, 0.007f);
 

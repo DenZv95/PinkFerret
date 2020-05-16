@@ -12,9 +12,7 @@ public:
 	void update(float time) override;
 	void draw(RenderWindow& app, float time) override;
 	void checkCollisionWithMap(float Dx, float Dy) override;
-	void Meleeattack();
 	StaticStateZombie States;
-
 private:
 	ZombieState* state_;
 	Sprite* sprite;

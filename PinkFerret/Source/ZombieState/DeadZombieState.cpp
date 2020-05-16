@@ -9,7 +9,7 @@ DeadZombieState::DeadZombieState()
 
 	angle = (atan2(241 - 258, 241 - 144)) * 180 / 3.14159265;
 }
-//123
+
 DeadZombieState::~DeadZombieState()
 {
 }

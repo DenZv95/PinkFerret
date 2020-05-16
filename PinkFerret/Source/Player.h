@@ -34,15 +34,4 @@ private:
 	SoundBuffer shootBuffer, reloadBuffer, meleeattackBuffer, moveBuffer;
 	Sound* shoot;
 	Sound* move;
-	/*(
-
-	Texture meleeattack_texture;
-	Texture reload_texture;
-	Texture shoot_texture;
-
-	Animation* aMove;
-	Animation* aMeleeattack;
-	Animation* aReload;
-	Animation* aShoot;
-	*/
 };

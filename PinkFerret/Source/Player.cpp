@@ -98,15 +98,9 @@ void Player::Meleeattack()
 	for (auto a : entitys)
 	{
 		if (a->life)
-		{
 			if (a->name == "Zombie")
 				if (getRect().intersects(a->getRect()))
-				{
 					a->damage();
-					//b->damage();
-				}
-
-		}
 	}
 }
 

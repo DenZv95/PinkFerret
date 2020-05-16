@@ -10,7 +10,7 @@ ReloadPlayerState::ReloadPlayerState()
 ReloadPlayerState::~ReloadPlayerState()
 {
 }
-/**/
+
 Sprite ReloadPlayerState::draw(float time)
 {
 	aReload->update(time);
@@ -38,7 +38,6 @@ PlayerState  *ReloadPlayerState::handleInput(Player& player, Event event, float 
 
 	if (aReload->isEnd())
 	{
-		//return new MovePlayerState();
 		if (player.ammo < 7) player.ammo = 7;
 		return player.States.getMoveState();
 	}

@@ -10,7 +10,7 @@ MeleeattackPlayerState::MeleeattackPlayerState()
 MeleeattackPlayerState::~MeleeattackPlayerState()
 {
 }
-/**/
+
 sf::Sprite MeleeattackPlayerState::draw(float time)
 {
 	aMeleeattack->update(time);
@@ -37,7 +37,6 @@ PlayerState* MeleeattackPlayerState::handleInput(Player& player, sf::Event event
 	}
 	if (aMeleeattack->isEnd())
 	{
-		//return new MovePlayerState();
 		return player.States.getMoveState();
 	}
 

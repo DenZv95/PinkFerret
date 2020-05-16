@@ -23,16 +23,11 @@ bool startGame() {
 	bool isFullsceen = true;
 
 	Hud hud = Hud();
-
 	Clock clock;
-
 	Level lvl;
 	lvl.LoadFromFile("Media/Map/level1.tmx");
 
-	Texture sBullet_texture;
-	sBullet_texture.loadFromFile("Media/survivor/FullMetalJacket.png");
-	Animation sBullet(sBullet_texture, 0, 0, 5, 4, 1, 0.8);
-	//std::list<Entity*> entities;
+	
 	float time;
 	
 	Music music;
@@ -101,12 +96,12 @@ bool startGame() {
 				case Keyboard::F2:
 					if (true == musicOn)
 					{
-						music.pause();//воспроизводим музыку
+						music.pause();
 						musicOn = false;
 					}
 					else
 					{
-						music.play();//воспроизводим музыку
+						music.play();
 						musicOn = true;
 					}
 					break;
@@ -141,13 +136,6 @@ bool startGame() {
 
 			e->update(time);
 
-			//if (e->life == false) 
-			//{ 
-			//	i = entities.erase(i); 
-			//	if (e -> name != "Player")
-			//		delete e; 
-			//}
-			//else 
 			i++;
 		}
 
@@ -157,7 +145,6 @@ bool startGame() {
 			Entity* e = *i;
 
 			e->update(time);
-			//e->anim.update();
 
 			if (e->life == false)
 			{
